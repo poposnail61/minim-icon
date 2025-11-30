@@ -32,43 +32,50 @@ export default function IconGrid({ icons, onDelete, showControls = false }: Icon
   return (
     <div className="space-y-6">
       {/* Controls Bar */}
-      <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 flex flex-col sm:flex-row gap-4 items-center justify-between">
-        <div className="relative w-full sm:w-96">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-100 py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 flex flex-col gap-4">
+        <div className="relative w-full">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
           <input
             type="text"
             placeholder="Search icons..."
-            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out"
+            className="block w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl leading-5 bg-gray-50 placeholder-gray-500 focus:outline-none focus:bg-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500 sm:text-base transition duration-200 ease-in-out shadow-sm"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
 
-        <div className="flex items-center space-x-4 w-full sm:w-auto">
-          <span className="text-sm text-gray-500 whitespace-nowrap">Size: {size}px</span>
-          <input
-            type="range"
-            min="16"
-            max="64"
-            value={size}
-            onChange={(e) => setSize(Number(e.target.value))}
-            className="w-full sm:w-32 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-          />
+        <div className="flex items-center justify-between">
+            <div className="text-sm text-gray-500 font-medium">
+                {filteredIcons.length} icons
+            </div>
+            <div className="flex items-center space-x-4">
+            <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Size</span>
+            <input
+                type="range"
+                min="16"
+                max="48"
+                value={size}
+                onChange={(e) => setSize(Number(e.target.value))}
+                className="w-32 h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-500"
+            />
+            <span className="text-sm text-gray-600 w-8 text-right">{size}px</span>
+            </div>
         </div>
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(64px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(80px,1fr))] gap-2 sm:gap-4 pb-12">
         {filteredIcons.map((icon) => (
           <div 
             key={icon.name} 
-            className="group relative flex flex-col items-center justify-center p-6 bg-white border border-gray-200 rounded-xl hover:border-indigo-500 hover:shadow-md transition-all duration-200 cursor-pointer"
+            className="group relative aspect-square flex items-center justify-center bg-white rounded-xl hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
             onClick={() => copyToClipboard(`<i class="icon icon-${icon.name}"></i>`, icon.name)}
+            title={icon.name}
           >
             <div 
-              className="mb-4 transition-transform duration-200 group-hover:scale-110"
+              className="transition-transform duration-200 group-hover:scale-110 text-gray-700 group-hover:text-gray-900"
               style={{ width: `${size}px`, height: `${size}px` }}
             >
               <i 
@@ -87,36 +94,24 @@ export default function IconGrid({ icons, onDelete, showControls = false }: Icon
               />
             </div>
             
-            <div className="text-xs text-gray-500 font-medium truncate w-full text-center group-hover:text-indigo-600">
-              {icon.name}
-            </div>
-
-            {/* Hover Actions */}
-            <div className={`absolute inset-0 flex items-center justify-center bg-white/90 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${copied === icon.name ? 'opacity-100' : ''}`}>
-              {copied === icon.name ? (
-                <div className="flex flex-col items-center text-green-600">
-                  <Check className="w-8 h-8 mb-1" />
-                  <span className="text-xs font-bold">Copied!</span>
+            {/* Copied Feedback Overlay */}
+            {copied === icon.name && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-900/90 rounded-xl animate-in fade-in duration-200">
+                    <Check className="w-6 h-6 text-white" />
                 </div>
-              ) : (
-                <div className="flex flex-col items-center text-indigo-600">
-                  <Copy className="w-8 h-8 mb-1" />
-                  <span className="text-xs font-bold">Copy HTML</span>
-                </div>
-              )}
-            </div>
+            )}
 
-            {/* Admin Delete Button (Top Right) */}
+            {/* Admin Delete Button */}
             {showControls && onDelete && (
               <button
                 onClick={(e) => {
                   e.stopPropagation()
                   onDelete(icon.name)
                 }}
-                className="absolute top-2 right-2 p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md opacity-0 group-hover:opacity-100 transition-all"
+                className="absolute top-1 right-1 p-1 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded opacity-0 group-hover:opacity-100 transition-all"
                 title="Delete Icon"
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 className="w-3 h-3" />
               </button>
             )}
           </div>
@@ -124,8 +119,12 @@ export default function IconGrid({ icons, onDelete, showControls = false }: Icon
       </div>
 
       {filteredIcons.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">No icons found matching "{search}"</p>
+        <div className="text-center py-20">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+            <Search className="w-8 h-8 text-gray-400" />
+          </div>
+          <h3 className="text-lg font-medium text-gray-900">No icons found</h3>
+          <p className="mt-1 text-gray-500">Try adjusting your search terms.</p>
         </div>
       )}
     </div>
