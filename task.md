@@ -1,0 +1,22 @@
+# Task: SVG Icon Manager
+
+- [x] Initialize Next.js Project <!-- id: 0 -->
+- [ ] Design & Planning <!-- id: 1 -->
+    - [ ] Create implementation_plan.md <!-- id: 2 -->
+- [x] Backend Implementation <!-- id: 3 -->
+    - [x] API Route: Upload & Process SVG (convert to currentColor) <!-- id: 4 -->
+    - [x] API Route: List SVGs <!-- id: 5 -->
+    - [x] API Route: Delete/Update SVGs <!-- id: 6 -->
+    - [x] Utility: Generate CSS for icons <!-- id: 7 -->
+- [x] Frontend Implementation <!-- id: 8 -->
+    - [x] Upload Component <!-- id: 9 -->
+    - [x] Icon List/Gallery Component <!-- id: 10 -->
+    - [x] Preview/Demo Section <!-- id: 11 -->
+- [x] Verification <!-- id: 12 -->
+    - [x] Verify Upload flow <!-- id: 13 -->
+    - [x] Verify Icon usage with <i> tag <!-- id: 14 -->
+    - [x] Verify Color/Size adjustments <!-- id: 15 -->
+- [x] GitHub Distribution Prep <!-- id: 16 -->
+    - [x] Create README.md & Documentation <!-- id: 17 -->
+    - [x] Implement GitHub Storage Adapter (API) <!-- id: 18 -->
+    - [x] Add Environment Configuration (.env.example) <!-- id: 19 -->
