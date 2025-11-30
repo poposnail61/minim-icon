@@ -1,39 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Minim Icon
 
-## Getting Started
+A minimal, zero-config SVG icon manager for developers.
+Host your own icons on GitHub and use them instantly in your projects via a single CSS link.
 
-First, run the development server:
+## 🚀 Quick Start
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Add this line to your HTML `<head>`:
+
+```html
+<link rel="stylesheet" href="https://minim-icon.vercel.app/api/icons.css" />
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then use icons anywhere:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```html
+<i class="icon icon-globe"></i>
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Features
 
-## Learn More
+-   **Zero Config**: No build steps or npm packages required.
+-   **GitHub Powered**: Upload SVGs to your repo, and they appear instantly.
+-   **CSS Control**: Size and color are controlled via standard CSS (`font-size`, `color`).
+-   **Optimized**: Icons are loaded as CSS masks, ensuring perfect scaling and color inheritance.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is built with Next.js and is ready to be deployed on Vercel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  Fork/Clone this repository.
+2.  Deploy to Vercel.
+3.  Set the following Environment Variables:
+    -   `ADMIN_PASSWORD`: Password for the admin dashboard.
+    -   `GITHUB_TOKEN`: Personal Access Token with `repo` scope.
+    -   `GITHUB_OWNER`: Your GitHub username.
+    -   `GITHUB_REPO`: This repository name.
 
-## Deploy on Vercel
+## 📝 Admin Dashboard
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## 🚀 Deployment
-This project is ready to be deployed on [Vercel](https://vercel.com).
+Visit `/admin` to upload or delete icons.
+Login with the password set in `ADMIN_PASSWORD`.
