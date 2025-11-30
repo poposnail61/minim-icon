@@ -55,7 +55,7 @@ export default function IconGrid({ icons, onDelete, showControls = false }: Icon
             <input
                 type="range"
                 min="16"
-                max="48"
+                max="64"
                 value={size}
                 onChange={(e) => setSize(Number(e.target.value))}
                 className="w-32 h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-500"
@@ -66,7 +66,12 @@ export default function IconGrid({ icons, onDelete, showControls = false }: Icon
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(64px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(80px,1fr))] gap-2 sm:gap-4 pb-12">
+      <div 
+        className="grid gap-2 sm:gap-4 pb-12"
+        style={{ 
+          gridTemplateColumns: `repeat(auto-fill, minmax(${Math.max(size + 32, 80)}px, 1fr))` 
+        }}
+      >
         {filteredIcons.map((icon) => (
           <div 
             key={icon.name} 
@@ -76,11 +81,12 @@ export default function IconGrid({ icons, onDelete, showControls = false }: Icon
           >
             <div 
               className="transition-transform duration-200 group-hover:scale-110 text-gray-700 group-hover:text-gray-900"
-              style={{ width: `${size}px`, height: `${size}px` }}
             >
               <i 
-                className={`icon icon-${icon.name} block w-full h-full bg-current`} 
+                className={`icon icon-${icon.name} block bg-current`} 
                 style={{ 
+                  width: `${size}px`,
+                  height: `${size}px`,
                   maskImage: `url(${icon.url})`,
                   WebkitMaskImage: `url(${icon.url})`,
                   maskSize: 'contain',
@@ -119,12 +125,8 @@ export default function IconGrid({ icons, onDelete, showControls = false }: Icon
       </div>
 
       {filteredIcons.length === 0 && (
-        <div className="text-center py-20">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
-            <Search className="w-8 h-8 text-gray-400" />
-          </div>
-          <h3 className="text-lg font-medium text-gray-900">No icons found</h3>
-          <p className="mt-1 text-gray-500">Try adjusting your search terms.</p>
+        <div className="text-center py-12">
+          <p className="text-gray-500 text-lg">No icons found matching "{search}"</p>
         </div>
       )}
     </div>
