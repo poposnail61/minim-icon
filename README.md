@@ -3,6 +3,8 @@
 A minimal, zero-config SVG icon manager for developers.
 Host your own icons on GitHub and use them instantly in your projects via a single CSS link.
 
+🔗 **Live Demo**: [https://minim-icon.vercel.app/](https://minim-icon.vercel.app/)
+
 ## 🚀 Quick Start
 
 Add this line to your HTML `<head>`:
