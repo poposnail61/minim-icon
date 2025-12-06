@@ -10,7 +10,7 @@ const BRANCH = 'main';
 const baseCss = `/* Minim Icon System */
 .icon {
   display: inline-block;
-  width: 1em;
+  width: calc(1em * var(--ratio, 1));
   height: 1em;
   background-color: currentColor;
   mask-size: contain;
@@ -29,8 +29,33 @@ try {
     .map(file => {
       const name = file.replace('.svg', '');
       const url = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${BRANCH}/public/icons/${file}`;
+      
+      // Calculate aspect ratio
+      const content = fs.readFileSync(path.join(ICONS_DIR, file), 'utf8');
+      let ratio = 1;
+
+      // Try width/height first
+      const widthMatch = content.match(/width=["']?([\d.]+)["']?/);
+      const heightMatch = content.match(/height=["']?([\d.]+)["']?/);
+
+      if (widthMatch && heightMatch) {
+         ratio = parseFloat(widthMatch[1]) / parseFloat(heightMatch[1]);
+      } else {
+        // Fallback to viewBox
+        const viewBoxMatch = content.match(/viewBox=["']?([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)["']?/);
+        if (viewBoxMatch) {
+            const width = parseFloat(viewBoxMatch[3]);
+            const height = parseFloat(viewBoxMatch[4]);
+            ratio = width / height;
+        }
+      }
+
+      // Round to 4 decimal places to keep it clean
+      ratio = Math.round(ratio * 10000) / 10000;
+
       return `
 .icon-${name} {
+  --ratio: ${ratio};
   mask-image: url(${url});
   -webkit-mask-image: url(${url});
 }`;
