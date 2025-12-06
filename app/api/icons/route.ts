@@ -10,7 +10,7 @@ const BRANCH = 'main'
 // Helper to interact with GitHub API
 async function githubRequest(path: string, options: RequestInit = {}) {
   if (!GITHUB_TOKEN) throw new Error('GITHUB_TOKEN is not set')
-  
+
   const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`
   const headers = {
     'Authorization': `Bearer ${GITHUB_TOKEN}`,
@@ -42,15 +42,15 @@ export async function GET() {
       }
       throw error
     }
-    
+
     // Filter for SVGs and map to raw URLs
-    const icons = Array.isArray(data) 
+    const icons = Array.isArray(data)
       ? data
-          .filter((file: any) => file.name.endsWith('.svg'))
-          .map((file: any) => ({
-            name: file.name.replace('.svg', ''),
-            url: `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${BRANCH}/public/icons/${file.name}`
-          }))
+        .filter((file: any) => file.name.endsWith('.svg'))
+        .map((file: any) => ({
+          name: file.name.replace('.svg', ''),
+          url: `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${BRANCH}/public/icons/${file.name}`
+        }))
       : []
 
     return NextResponse.json({ icons })
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
 
     const formData = await request.formData()
     const file = formData.get('file') as File
-    
+
     if (!file || !file.name.endsWith('.svg')) {
       return NextResponse.json({ error: 'Invalid file' }, { status: 400 })
     }
@@ -76,7 +76,7 @@ export async function POST(request: Request) {
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
     const content = buffer.toString('base64')
-    
+
     const filename = file.name.replace(/\s+/g, '-').toLowerCase()
     const path = `public/icons/${filename}`
 
