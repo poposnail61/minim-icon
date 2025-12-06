@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Search, Copy, Check, Trash2 } from 'lucide-react'
 
 interface Icon {
@@ -15,6 +15,87 @@ interface IconGridProps {
 }
 
 type FilterType = 'all' | 'outline' | 'solid'
+
+const IconItem = ({
+  icon,
+  size,
+  onDelete,
+  showControls,
+  onCopy,
+  copied
+}: {
+  icon: Icon
+  size: number
+  onDelete?: (name: string) => void
+  showControls: boolean
+  onCopy: (text: string, name: string) => void
+  copied: string | null
+}) => {
+  const [aspectRatio, setAspectRatio] = useState(1)
+
+  useEffect(() => {
+    const img = new Image()
+    img.src = icon.url
+    img.onload = () => {
+      if (img.height > 0) {
+        setAspectRatio(img.width / img.height)
+      }
+    }
+  }, [icon.url])
+
+  return (
+    <div
+      className="group relative flex items-center justify-center bg-white rounded-xl hover:bg-gray-50 transition-colors duration-200 cursor-pointer border border-transparent hover:border-gray-200"
+      style={{
+        padding: '1rem',
+      }}
+      onClick={() => onCopy(`<i class="icon icon-${icon.name}"></i>`, icon.name)}
+      title={icon.name}
+    >
+      <div
+        className="transition-transform duration-200 group-hover:scale-110 text-gray-700 group-hover:text-gray-900"
+      >
+        <i
+          className={`icon icon-${icon.name} block bg-current`}
+          style={{
+            width: `${size * aspectRatio}px`,
+            height: `${size}px`,
+            maskImage: `url(${icon.url})`,
+            WebkitMaskImage: `url(${icon.url})`,
+            maskSize: '100% 100%',
+            WebkitMaskSize: '100% 100%',
+            maskRepeat: 'no-repeat',
+            WebkitMaskRepeat: 'no-repeat',
+            maskPosition: 'center',
+            WebkitMaskPosition: 'center',
+            backgroundColor: 'currentColor'
+          }}
+        />
+      </div>
+
+      {/* Copied Feedback Overlay */}
+      {copied === icon.name && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900/90 rounded-xl animate-in fade-in duration-200 z-10">
+          <Check className="w-6 h-6 text-white" />
+        </div>
+      )}
+
+      {/* Admin Delete Button */}
+      {showControls && onDelete && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            onDelete(icon.name)
+          }}
+          className="absolute top-1 right-1 p-1 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded opacity-0 group-hover:opacity-100 transition-all"
+          title="Delete Icon"
+        >
+          <Trash2 className="w-3 h-3" />
+        </button>
+      )}
+    </div>
+  )
+}
 
 export default function IconGrid({ icons, onDelete, showControls = false }: IconGridProps) {
   const [search, setSearch] = useState('')
@@ -97,61 +178,17 @@ export default function IconGrid({ icons, onDelete, showControls = false }: Icon
       </div>
 
       {/* Grid */}
-      <div 
-        className="grid gap-2 sm:gap-4 pb-12"
-        style={{ 
-          gridTemplateColumns: `repeat(auto-fill, minmax(${Math.max(size + 32, 80)}px, 1fr))` 
-        }}
-      >
+      <div className="flex flex-wrap gap-4 pb-12">
         {filteredIcons.map((icon) => (
-          <div 
-            key={icon.name} 
-            className="group relative aspect-square flex items-center justify-center bg-white rounded-xl hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
-            onClick={() => copyToClipboard(`<i class="icon icon-${icon.name}"></i>`, icon.name)}
-            title={icon.name}
-          >
-            <div 
-              className="transition-transform duration-200 group-hover:scale-110 text-gray-700 group-hover:text-gray-900"
-            >
-              <i 
-                className={`icon icon-${icon.name} block bg-current`} 
-                style={{ 
-                  width: `${size}px`,
-                  height: `${size}px`,
-                  maskImage: `url(${icon.url})`,
-                  WebkitMaskImage: `url(${icon.url})`,
-                  maskSize: 'contain',
-                  WebkitMaskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskPosition: 'center',
-                  backgroundColor: 'currentColor'
-                }} 
-              />
-            </div>
-            
-            {/* Copied Feedback Overlay */}
-            {copied === icon.name && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-900/90 rounded-xl animate-in fade-in duration-200">
-                    <Check className="w-6 h-6 text-white" />
-                </div>
-            )}
-
-            {/* Admin Delete Button */}
-            {showControls && onDelete && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onDelete(icon.name)
-                }}
-                className="absolute top-1 right-1 p-1 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded opacity-0 group-hover:opacity-100 transition-all"
-                title="Delete Icon"
-              >
-                <Trash2 className="w-3 h-3" />
-              </button>
-            )}
-          </div>
+          <IconItem
+            key={icon.name}
+            icon={icon}
+            size={size}
+            onDelete={onDelete}
+            showControls={showControls}
+            onCopy={copyToClipboard}
+            copied={copied}
+          />
         ))}
       </div>
 
