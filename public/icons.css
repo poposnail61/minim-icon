@@ -1,0 +1,848 @@
+/* Minim Icon System */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.icon-align-center-horiz-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-center-horiz-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-center-horiz-outline.svg);
+}
+
+.icon-align-center-horiz-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-center-horiz-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-center-horiz-solid.svg);
+}
+
+.icon-align-center-vert-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-center-vert-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-center-vert-outline.svg);
+}
+
+.icon-align-center-vert-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-center-vert-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-center-vert-solid.svg);
+}
+
+.icon-align-down-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-down-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-down-outline.svg);
+}
+
+.icon-align-down-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-down-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-down-solid.svg);
+}
+
+.icon-align-left-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-left-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-left-outline.svg);
+}
+
+.icon-align-left-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-left-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-left-solid.svg);
+}
+
+.icon-align-right-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-right-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-right-outline.svg);
+}
+
+.icon-align-right-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-right-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-right-solid.svg);
+}
+
+.icon-align-up-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-up-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-up-outline.svg);
+}
+
+.icon-align-up-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-up-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/align-up-solid.svg);
+}
+
+.icon-arrow-down-left-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-left-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-left-outline.svg);
+}
+
+.icon-arrow-down-left-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-left-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-left-solid.svg);
+}
+
+.icon-arrow-down-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-outline.svg);
+}
+
+.icon-arrow-down-right-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-right-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-right-outline.svg);
+}
+
+.icon-arrow-down-right-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-right-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-right-solid.svg);
+}
+
+.icon-arrow-down-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-down-solid.svg);
+}
+
+.icon-arrow-end-down-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-down-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-down-outline.svg);
+}
+
+.icon-arrow-end-down-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-down-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-down-solid.svg);
+}
+
+.icon-arrow-end-left-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-left-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-left-outline.svg);
+}
+
+.icon-arrow-end-left-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-left-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-left-solid.svg);
+}
+
+.icon-arrow-end-right-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-right-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-right-outline.svg);
+}
+
+.icon-arrow-end-right-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-right-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-right-solid.svg);
+}
+
+.icon-arrow-end-up-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-up-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-up-outline.svg);
+}
+
+.icon-arrow-end-up-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-up-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-end-up-solid.svg);
+}
+
+.icon-arrow-in-down-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-down-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-down-outline.svg);
+}
+
+.icon-arrow-in-down-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-down-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-down-solid.svg);
+}
+
+.icon-arrow-in-left-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-left-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-left-outline.svg);
+}
+
+.icon-arrow-in-left-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-left-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-left-solid.svg);
+}
+
+.icon-arrow-in-right-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-right-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-right-outline.svg);
+}
+
+.icon-arrow-in-right-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-right-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-right-solid.svg);
+}
+
+.icon-arrow-in-up-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-up-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-up-outline.svg);
+}
+
+.icon-arrow-in-up-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-up-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-in-up-solid.svg);
+}
+
+.icon-arrow-left-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-left-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-left-outline.svg);
+}
+
+.icon-arrow-left-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-left-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-left-solid.svg);
+}
+
+.icon-arrow-out-down-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-down-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-down-outline.svg);
+}
+
+.icon-arrow-out-down-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-down-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-down-solid.svg);
+}
+
+.icon-arrow-out-left-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-left-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-left-outline.svg);
+}
+
+.icon-arrow-out-left-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-left-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-left-solid.svg);
+}
+
+.icon-arrow-out-right-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-right-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-right-outline.svg);
+}
+
+.icon-arrow-out-right-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-right-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-right-solid.svg);
+}
+
+.icon-arrow-out-up-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-up-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-up-outline.svg);
+}
+
+.icon-arrow-out-up-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-up-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-out-up-solid.svg);
+}
+
+.icon-arrow-right-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-right-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-right-outline.svg);
+}
+
+.icon-arrow-right-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-right-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-right-solid.svg);
+}
+
+.icon-arrow-start-down-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-down-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-down-outline.svg);
+}
+
+.icon-arrow-start-down-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-down-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-down-solid.svg);
+}
+
+.icon-arrow-start-left-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-left-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-left-outline.svg);
+}
+
+.icon-arrow-start-left-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-left-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-left-solid.svg);
+}
+
+.icon-arrow-start-right-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-right-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-right-outline.svg);
+}
+
+.icon-arrow-start-right-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-right-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-right-solid.svg);
+}
+
+.icon-arrow-start-up-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-up-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-up-outline.svg);
+}
+
+.icon-arrow-start-up-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-up-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-start-up-solid.svg);
+}
+
+.icon-arrow-up-left-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-left-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-left-outline.svg);
+}
+
+.icon-arrow-up-left-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-left-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-left-solid.svg);
+}
+
+.icon-arrow-up-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-outline.svg);
+}
+
+.icon-arrow-up-right-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-right-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-right-outline.svg);
+}
+
+.icon-arrow-up-right-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-right-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-right-solid.svg);
+}
+
+.icon-arrow-up-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/arrow-up-solid.svg);
+}
+
+.icon-calendar-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/calendar-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/calendar-outline.svg);
+}
+
+.icon-calendar-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/calendar-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/calendar-solid.svg);
+}
+
+.icon-camera-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/camera-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/camera-outline.svg);
+}
+
+.icon-camera-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/camera-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/camera-solid.svg);
+}
+
+.icon-check-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/check-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/check-outline.svg);
+}
+
+.icon-check-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/check-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/check-solid.svg);
+}
+
+.icon-checkbox-checked-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-checked-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-checked-outline.svg);
+}
+
+.icon-checkbox-checked-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-checked-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-checked-solid.svg);
+}
+
+.icon-checkbox-mixed-1 {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-mixed-1.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-mixed-1.svg);
+}
+
+.icon-checkbox-mixed {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-mixed.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-mixed.svg);
+}
+
+.icon-checkbox-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-outline.svg);
+}
+
+.icon-checkbox-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/checkbox-solid.svg);
+}
+
+.icon-chevron-down-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-down-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-down-outline.svg);
+}
+
+.icon-chevron-down-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-down-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-down-solid.svg);
+}
+
+.icon-chevron-left-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-left-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-left-outline.svg);
+}
+
+.icon-chevron-left-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-left-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-left-solid.svg);
+}
+
+.icon-chevron-right-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-right-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-right-outline.svg);
+}
+
+.icon-chevron-right-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-right-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-right-solid.svg);
+}
+
+.icon-chevron-right-tight-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-right-tight-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-right-tight-outline.svg);
+}
+
+.icon-chevron-up-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-up-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-up-outline.svg);
+}
+
+.icon-chevron-up-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-up-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chevron-up-solid.svg);
+}
+
+.icon-close-circle-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-circle-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-circle-outline.svg);
+}
+
+.icon-close-circle-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-circle-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-circle-solid.svg);
+}
+
+.icon-close-mini-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-mini-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-mini-outline.svg);
+}
+
+.icon-close-mini-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-mini-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-mini-solid.svg);
+}
+
+.icon-close-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-outline.svg);
+}
+
+.icon-close-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/close-solid.svg);
+}
+
+.icon-copy-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/copy-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/copy-outline.svg);
+}
+
+.icon-copy-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/copy-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/copy-solid.svg);
+}
+
+.icon-delete-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/delete-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/delete-outline.svg);
+}
+
+.icon-delete-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/delete-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/delete-solid.svg);
+}
+
+.icon-edit-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/edit-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/edit-outline.svg);
+}
+
+.icon-edit-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/edit-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/edit-solid.svg);
+}
+
+.icon-file-note-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/file-note-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/file-note-outline.svg);
+}
+
+.icon-file-note-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/file-note-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/file-note-solid.svg);
+}
+
+.icon-format-align-center-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-center-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-center-outline.svg);
+}
+
+.icon-format-align-center-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-center-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-center-solid.svg);
+}
+
+.icon-format-align-justify-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-justify-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-justify-outline.svg);
+}
+
+.icon-format-align-justify-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-justify-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-justify-solid.svg);
+}
+
+.icon-format-align-left-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-left-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-left-outline.svg);
+}
+
+.icon-format-align-left-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-left-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-left-solid.svg);
+}
+
+.icon-format-align-right-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-right-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-right-outline.svg);
+}
+
+.icon-format-align-right-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-right-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-align-right-solid.svg);
+}
+
+.icon-format-bold-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-bold-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-bold-outline.svg);
+}
+
+.icon-format-bold-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-bold-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-bold-solid.svg);
+}
+
+.icon-format-italic-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-italic-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-italic-outline.svg);
+}
+
+.icon-format-italic-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-italic-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-italic-solid.svg);
+}
+
+.icon-format-size-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-size-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-size-outline.svg);
+}
+
+.icon-format-size-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-size-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-size-solid.svg);
+}
+
+.icon-format-strikethrough-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-strikethrough-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-strikethrough-outline.svg);
+}
+
+.icon-format-strikethrough-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-strikethrough-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-strikethrough-solid.svg);
+}
+
+.icon-format-title-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-title-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-title-outline.svg);
+}
+
+.icon-format-title-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-title-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-title-solid.svg);
+}
+
+.icon-format-underlined-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-underlined-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-underlined-outline.svg);
+}
+
+.icon-format-underlined-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-underlined-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/format-underlined-solid.svg);
+}
+
+.icon-home-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/home-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/home-outline.svg);
+}
+
+.icon-home-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/home-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/home-solid.svg);
+}
+
+.icon-image-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/image-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/image-outline.svg);
+}
+
+.icon-image-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/image-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/image-solid.svg);
+}
+
+.icon-link-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/link-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/link-outline.svg);
+}
+
+.icon-link-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/link-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/link-solid.svg);
+}
+
+.icon-map-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/map-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/map-outline.svg);
+}
+
+.icon-map-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/map-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/map-solid.svg);
+}
+
+.icon-minus-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/minus-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/minus-outline.svg);
+}
+
+.icon-minus-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/minus-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/minus-solid.svg);
+}
+
+.icon-more-horiz-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/more-horiz-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/more-horiz-solid.svg);
+}
+
+.icon-more-vert-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/more-vert-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/more-vert-solid.svg);
+}
+
+.icon-open-window-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/open-window-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/open-window-outline.svg);
+}
+
+.icon-open-window-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/open-window-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/open-window-solid.svg);
+}
+
+.icon-person-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/person-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/person-outline.svg);
+}
+
+.icon-person-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/person-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/person-solid.svg);
+}
+
+.icon-plus-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/plus-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/plus-outline.svg);
+}
+
+.icon-plus-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/plus-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/plus-solid.svg);
+}
+
+.icon-radio-checked-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/radio-checked-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/radio-checked-outline.svg);
+}
+
+.icon-radio-checked-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/radio-checked-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/radio-checked-solid.svg);
+}
+
+.icon-radio-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/radio-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/radio-outline.svg);
+}
+
+.icon-radio-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/radio-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/radio-solid.svg);
+}
+
+.icon-redo-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/redo-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/redo-outline.svg);
+}
+
+.icon-redo-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/redo-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/redo-solid.svg);
+}
+
+.icon-refresh-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/refresh-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/refresh-outline.svg);
+}
+
+.icon-refresh-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/refresh-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/refresh-solid.svg);
+}
+
+.icon-search-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/search-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/search-outline.svg);
+}
+
+.icon-search-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/search-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/search-solid.svg);
+}
+
+.icon-setting-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/setting-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/setting-outline.svg);
+}
+
+.icon-setting-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/setting-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/setting-solid.svg);
+}
+
+.icon-shipping-local-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/shipping-local-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/shipping-local-outline.svg);
+}
+
+.icon-shipping-local-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/shipping-local-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/shipping-local-solid.svg);
+}
+
+.icon-shopping-bag-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/shopping-bag-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/shopping-bag-outline.svg);
+}
+
+.icon-shopping-bag-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/shopping-bag-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/shopping-bag-solid.svg);
+}
+
+.icon-swap-horiz-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/swap-horiz-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/swap-horiz-outline.svg);
+}
+
+.icon-swap-horiz-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/swap-horiz-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/swap-horiz-solid.svg);
+}
+
+.icon-swap-vert-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/swap-vert-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/swap-vert-outline.svg);
+}
+
+.icon-swap-vert-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/swap-vert-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/swap-vert-solid.svg);
+}
+
+.icon-tiket-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/tiket-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/tiket-outline.svg);
+}
+
+.icon-tiket-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/tiket-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/tiket-solid.svg);
+}
+
+.icon-time-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/time-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/time-outline.svg);
+}
+
+.icon-time-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/time-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/time-solid.svg);
+}
+
+.icon-undo-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/undo-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/undo-outline.svg);
+}
+
+.icon-undo-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/undo-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/undo-solid.svg);
+}
+
+.icon-unfold-colse-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/unfold-colse-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/unfold-colse-outline.svg);
+}
+
+.icon-unfold-colse-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/unfold-colse-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/unfold-colse-solid.svg);
+}
+
+.icon-unfold-open-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/unfold-open-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/unfold-open-outline.svg);
+}
+
+.icon-unfold-open-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/unfold-open-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/unfold-open-solid.svg);
+}
+
+.icon-video-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/video-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/video-outline.svg);
+}
+
+.icon-video-solid {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/video-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/video-solid.svg);
+}
+
+.icon-view-list-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/view-list-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/view-list-outline.svg);
+}
+
+.icon-view-table-outline {
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/view-table-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/view-table-outline.svg);
+}

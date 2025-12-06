@@ -10,7 +10,7 @@ Host your own icons on GitHub and use them instantly in your projects via a sing
 Add this line to your HTML `<head>`:
 
 ```html
-<link rel="stylesheet" href="https://minim-icon.vercel.app/api/icons.css" />
+<link rel="stylesheet" href="https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons.css" />
 ```
 
 Then use icons anywhere:
