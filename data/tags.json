@@ -288,31 +288,40 @@
     "solid"
   ],
   "chevron-down-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "chevron-down-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "chevron-left-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "chevron-left-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "chevron-right-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "chevron-right-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "chevron-right-tight-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "chevron-up-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "chevron-up-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "close-circle-outline": [
     "outline"
