@@ -366,64 +366,84 @@
     "solid"
   ],
   "format-align-center-outline": [
-    "outline"
+    "outline",
+    "format"
   ],
   "format-align-center-solid": [
-    "solid"
+    "solid",
+    "format"
   ],
   "format-align-justify-outline": [
-    "outline"
+    "outline",
+    "format"
   ],
   "format-align-justify-solid": [
-    "solid"
+    "solid",
+    "format"
   ],
   "format-align-left-outline": [
-    "outline"
+    "outline",
+    "format"
   ],
   "format-align-left-solid": [
-    "solid"
+    "solid",
+    "format"
   ],
   "format-align-right-outline": [
-    "outline"
+    "outline",
+    "format"
   ],
   "format-align-right-solid": [
-    "solid"
+    "solid",
+    "format"
   ],
   "format-bold-outline": [
-    "outline"
+    "outline",
+    "format"
   ],
   "format-bold-solid": [
-    "solid"
+    "solid",
+    "format"
   ],
   "format-italic-outline": [
-    "outline"
+    "outline",
+    "format"
   ],
   "format-italic-solid": [
-    "solid"
+    "solid",
+    "format"
   ],
   "format-size-outline": [
-    "outline"
+    "outline",
+    "format"
   ],
   "format-size-solid": [
-    "solid"
+    "solid",
+    "format"
   ],
   "format-strikethrough-outline": [
-    "outline"
+    "outline",
+    "format"
   ],
   "format-strikethrough-solid": [
-    "solid"
+    "solid",
+    "format"
   ],
   "format-title-outline": [
-    "outline"
+    "outline",
+    "format"
   ],
   "format-title-solid": [
-    "solid"
+    "solid",
+    "format"
   ],
   "format-underlined-outline": [
-    "outline"
+    "outline",
+    "format"
   ],
   "format-underlined-solid": [
-    "solid"
+    "solid",
+    "format"
   ],
   "home-outline": [
     "outline"
