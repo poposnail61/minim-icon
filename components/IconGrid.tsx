@@ -3,7 +3,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { Check, Search, RefreshCcw } from 'lucide-react'
 
-// Define Icon interface locally if not available globally, or rely on parent.
 interface Icon {
   name: string
   url: string
@@ -19,8 +18,6 @@ interface IconGridProps {
   selectedIds?: string[]
   onToggleSelection?: (icon: Icon) => void
 }
-
-type FilterType = 'all' | 'outline' | 'solid'
 
 const COLORS = [
   { name: 'Original', value: null },
@@ -68,8 +65,8 @@ const IconItem = ({
   return (
     <div
       className={`group relative flex flex-col bg-white rounded-xl overflow-hidden transition-all duration-200 cursor-pointer border shadow-sm hover:shadow-md ${isSelected
-          ? 'border-indigo-500 ring-2 ring-indigo-500 ring-offset-2'
-          : 'border-gray-200 hover:border-gray-300'
+        ? 'border-indigo-500 ring-2 ring-indigo-500 ring-offset-2'
+        : 'border-gray-200 hover:border-gray-300'
         }`}
       onClick={() => {
         if (onClick) {
@@ -80,10 +77,7 @@ const IconItem = ({
       }}
       title={icon.name}
     >
-      {/* 
-        NEW LAYOUT: Header Row for Checkbox
-        This separates the control from the icon content physically in the DOM flow.
-      */}
+      {/* Header Row for Checkbox */}
       {showControls && onToggleSelection ? (
         <div className="h-8 bg-gray-50 border-b border-gray-100 flex items-center px-2">
           <div
@@ -94,24 +88,20 @@ const IconItem = ({
             }}
           >
             <div className={`w-[20px] h-[20px] rounded border flex items-center justify-center transition-colors ${isSelected
-                ? 'bg-indigo-500 border-indigo-500'
-                : 'bg-white border-gray-300'
+              ? 'bg-indigo-500 border-indigo-500'
+              : 'bg-white border-gray-300'
               }`}>
               {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
             </div>
           </div>
-          {/* Tags Indicator in Header */}
+          {/* Tags Indicator */}
           {icon.tags && icon.tags.length > 0 && (
             <div className="ml-auto flex gap-1">
               <span className="w-2 h-2 rounded-full bg-indigo-400" title={`${icon.tags.length} tags`}></span>
             </div>
           )}
         </div>
-      ) : (
-        // Spacer for consistency if controls are off but we want similar alignment
-        // Or just omitted if Minimal mode
-        null
-      )}
+      ) : null}
 
       {/* Main Icon Content Area */}
       <div
@@ -172,24 +162,42 @@ export default function IconGrid({
   const [search, setSearch] = useState('')
   const [size, setSize] = useState(24)
   const [copied, setCopied] = useState<string | null>(null)
-  const [filter, setFilter] = useState<FilterType>('all')
+
+  // Internal Tag Filtering
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
+
   const [selectedColor, setSelectedColor] = useState<string | null>(null)
   const [customHex, setCustomHex] = useState('')
 
-  // Internal filtering only for 'full' mode.
+  // Compute Available Tags
+  const availableTags = useMemo(() => {
+    const tags = new Set<string>()
+    icons.forEach(icon => {
+      if (icon.tags) icon.tags.forEach(t => tags.add(t))
+    })
+    return Array.from(tags).sort()
+  }, [icons])
+
+  // Filtering Logic
   const displayIcons = useMemo(() => {
     if (layoutMode === 'minimal') return icons
 
     return icons.filter(icon => {
       const matchesSearch = icon.name.toLowerCase().includes(search.toLowerCase())
-      const matchesFilter =
-        filter === 'all' ? true :
-          filter === 'outline' ? icon.name.includes('-outline') :
-            filter === 'solid' ? icon.name.includes('-solid') : true
 
-      return matchesSearch && matchesFilter
+      const matchesTags = selectedTags.length === 0 || (
+        icon.tags && selectedTags.every(t => icon.tags!.includes(t))
+      )
+
+      return matchesSearch && matchesTags
     })
-  }, [icons, search, filter, layoutMode])
+  }, [icons, search, selectedTags, layoutMode])
+
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prev =>
+      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+    )
+  }
 
   const copyToClipboard = (text: string, name: string) => {
     navigator.clipboard.writeText(text)
@@ -214,9 +222,9 @@ export default function IconGrid({
         <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-sm border-b border-gray-100 py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 space-y-4">
 
           {/* Row 1: Search & Filter */}
-          <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
-            {/* Search Input - Grows to fill available space */}
-            <div className="relative flex-grow w-full md:w-auto min-w-[200px]">
+          <div className="flex flex-col gap-4">
+            {/* Search Input */}
+            <div className="relative w-full">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <Search className="h-5 w-5 text-gray-400" />
               </div>
@@ -229,21 +237,34 @@ export default function IconGrid({
               />
             </div>
 
-            {/* Filter Tabs - Fixed width container on mobile, auto on desktop */}
-            <div className="flex p-1 bg-gray-100 rounded-xl shrink-0">
-              {(['all', 'outline', 'solid'] as FilterType[]).map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setFilter(f)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg capitalize transition-all ${filter === f
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-500 hover:text-gray-700'
-                    }`}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
+            {/* Tag Filters (Replaces Tabs) */}
+            {availableTags.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {availableTags.map(tag => {
+                  const isActive = selectedTags.includes(tag)
+                  return (
+                    <button
+                      key={tag}
+                      onClick={() => toggleTag(tag)}
+                      className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all ${isActive
+                          ? 'bg-indigo-100 text-indigo-700 border-indigo-200 ring-1 ring-indigo-500 ring-offset-1'
+                          : 'bg-white text-gray-500 border-gray-200 hover:bg-gray-50 hover:text-gray-700'
+                        }`}
+                    >
+                      {tag}
+                    </button>
+                  )
+                })}
+                {selectedTags.length > 0 && (
+                  <button
+                    onClick={() => setSelectedTags([])}
+                    className="px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-600 underline"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Row 2: Color & Size */}
@@ -260,8 +281,8 @@ export default function IconGrid({
                       if (color.value === null) setCustomHex('')
                     }}
                     className={`w-8 h-8 rounded-md border flex items-center justify-center transition-all ${selectedColor === color.value
-                        ? 'ring-2 ring-indigo-500 ring-offset-2'
-                        : 'hover:scale-105'
+                      ? 'ring-2 ring-indigo-500 ring-offset-2'
+                      : 'hover:scale-105'
                       }`}
                     style={{
                       backgroundColor: color.value || '#transparent',

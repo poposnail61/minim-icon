@@ -1,0 +1,521 @@
+{
+  "align-center-horiz-outline": [
+    "outline"
+  ],
+  "align-center-horiz-solid": [
+    "solid"
+  ],
+  "align-center-vert-outline": [
+    "outline"
+  ],
+  "align-center-vert-solid": [
+    "solid"
+  ],
+  "align-down-outline": [
+    "outline"
+  ],
+  "align-down-solid": [
+    "solid"
+  ],
+  "align-left-outline": [
+    "outline"
+  ],
+  "align-left-solid": [
+    "solid"
+  ],
+  "align-right-outline": [
+    "outline"
+  ],
+  "align-right-solid": [
+    "solid"
+  ],
+  "align-up-outline": [
+    "outline"
+  ],
+  "align-up-solid": [
+    "solid"
+  ],
+  "arrow-down-left-outline": [
+    "outline"
+  ],
+  "arrow-down-left-solid": [
+    "solid"
+  ],
+  "arrow-down-outline": [
+    "outline"
+  ],
+  "arrow-down-right-outline": [
+    "outline"
+  ],
+  "arrow-down-right-solid": [
+    "solid"
+  ],
+  "arrow-down-solid": [
+    "solid"
+  ],
+  "arrow-end-down-outline": [
+    "outline"
+  ],
+  "arrow-end-down-solid": [
+    "solid"
+  ],
+  "arrow-end-left-outline": [
+    "outline"
+  ],
+  "arrow-end-left-solid": [
+    "solid"
+  ],
+  "arrow-end-right-outline": [
+    "outline"
+  ],
+  "arrow-end-right-solid": [
+    "solid"
+  ],
+  "arrow-end-up-outline": [
+    "outline"
+  ],
+  "arrow-end-up-solid": [
+    "solid"
+  ],
+  "arrow-in-down-outline": [
+    "outline"
+  ],
+  "arrow-in-down-solid": [
+    "solid"
+  ],
+  "arrow-in-left-outline": [
+    "outline"
+  ],
+  "arrow-in-left-solid": [
+    "solid"
+  ],
+  "arrow-in-right-outline": [
+    "outline"
+  ],
+  "arrow-in-right-solid": [
+    "solid"
+  ],
+  "arrow-in-up-outline": [
+    "outline"
+  ],
+  "arrow-in-up-solid": [
+    "solid"
+  ],
+  "arrow-left-outline": [
+    "outline"
+  ],
+  "arrow-left-solid": [
+    "solid"
+  ],
+  "arrow-out-down-outline": [
+    "outline"
+  ],
+  "arrow-out-down-solid": [
+    "solid"
+  ],
+  "arrow-out-left-outline": [
+    "outline"
+  ],
+  "arrow-out-left-solid": [
+    "solid"
+  ],
+  "arrow-out-right-outline": [
+    "outline"
+  ],
+  "arrow-out-right-solid": [
+    "solid"
+  ],
+  "arrow-out-up-outline": [
+    "outline"
+  ],
+  "arrow-out-up-solid": [
+    "solid"
+  ],
+  "arrow-right-outline": [
+    "outline"
+  ],
+  "arrow-right-solid": [
+    "solid"
+  ],
+  "arrow-start-down-outline": [
+    "outline"
+  ],
+  "arrow-start-down-solid": [
+    "solid"
+  ],
+  "arrow-start-left-outline": [
+    "outline"
+  ],
+  "arrow-start-left-solid": [
+    "solid"
+  ],
+  "arrow-start-right-outline": [
+    "outline"
+  ],
+  "arrow-start-right-solid": [
+    "solid"
+  ],
+  "arrow-start-up-outline": [
+    "outline"
+  ],
+  "arrow-start-up-solid": [
+    "solid"
+  ],
+  "arrow-up-left-outline": [
+    "outline"
+  ],
+  "arrow-up-left-solid": [
+    "solid"
+  ],
+  "arrow-up-outline": [
+    "outline"
+  ],
+  "arrow-up-right-outline": [
+    "outline"
+  ],
+  "arrow-up-right-solid": [
+    "solid"
+  ],
+  "arrow-up-solid": [
+    "solid"
+  ],
+  "calendar-outline": [
+    "outline"
+  ],
+  "calendar-solid": [
+    "solid"
+  ],
+  "camera-outline": [
+    "outline"
+  ],
+  "camera-solid": [
+    "solid"
+  ],
+  "chat-more-outline": [
+    "outline"
+  ],
+  "chat-more-solid": [
+    "solid"
+  ],
+  "chat-note-outline": [
+    "outline"
+  ],
+  "chat-note-solid": [
+    "solid"
+  ],
+  "chat-outline": [
+    "outline"
+  ],
+  "chat-solid": [
+    "solid"
+  ],
+  "check-outline": [
+    "outline"
+  ],
+  "check-solid": [
+    "solid"
+  ],
+  "checkbox-checked-outline": [
+    "outline"
+  ],
+  "checkbox-checked-solid": [
+    "solid"
+  ],
+  "checkbox-outline": [
+    "outline"
+  ],
+  "checkbox-solid": [
+    "solid"
+  ],
+  "chevron-down-outline": [
+    "outline"
+  ],
+  "chevron-down-solid": [
+    "solid"
+  ],
+  "chevron-left-outline": [
+    "outline"
+  ],
+  "chevron-left-solid": [
+    "solid"
+  ],
+  "chevron-right-outline": [
+    "outline"
+  ],
+  "chevron-right-solid": [
+    "solid"
+  ],
+  "chevron-right-tight-outline": [
+    "outline"
+  ],
+  "chevron-up-outline": [
+    "outline"
+  ],
+  "chevron-up-solid": [
+    "solid"
+  ],
+  "close-circle-outline": [
+    "outline"
+  ],
+  "close-circle-solid": [
+    "solid"
+  ],
+  "close-mini-outline": [
+    "outline"
+  ],
+  "close-mini-solid": [
+    "solid"
+  ],
+  "close-outline": [
+    "outline"
+  ],
+  "close-solid": [
+    "solid"
+  ],
+  "copy-outline": [
+    "outline"
+  ],
+  "copy-solid": [
+    "solid"
+  ],
+  "delete-outline": [
+    "outline"
+  ],
+  "delete-solid": [
+    "solid"
+  ],
+  "edit-outline": [
+    "outline"
+  ],
+  "edit-solid": [
+    "solid"
+  ],
+  "file-note-outline": [
+    "outline"
+  ],
+  "file-note-solid": [
+    "solid"
+  ],
+  "format-align-center-outline": [
+    "outline"
+  ],
+  "format-align-center-solid": [
+    "solid"
+  ],
+  "format-align-justify-outline": [
+    "outline"
+  ],
+  "format-align-justify-solid": [
+    "solid"
+  ],
+  "format-align-left-outline": [
+    "outline"
+  ],
+  "format-align-left-solid": [
+    "solid"
+  ],
+  "format-align-right-outline": [
+    "outline"
+  ],
+  "format-align-right-solid": [
+    "solid"
+  ],
+  "format-bold-outline": [
+    "outline"
+  ],
+  "format-bold-solid": [
+    "solid"
+  ],
+  "format-italic-outline": [
+    "outline"
+  ],
+  "format-italic-solid": [
+    "solid"
+  ],
+  "format-size-outline": [
+    "outline"
+  ],
+  "format-size-solid": [
+    "solid"
+  ],
+  "format-strikethrough-outline": [
+    "outline"
+  ],
+  "format-strikethrough-solid": [
+    "solid"
+  ],
+  "format-title-outline": [
+    "outline"
+  ],
+  "format-title-solid": [
+    "solid"
+  ],
+  "format-underlined-outline": [
+    "outline"
+  ],
+  "format-underlined-solid": [
+    "solid"
+  ],
+  "home-outline": [
+    "outline"
+  ],
+  "home-solid": [
+    "solid"
+  ],
+  "image-outline": [
+    "outline"
+  ],
+  "image-solid": [
+    "solid"
+  ],
+  "link-outline": [
+    "outline"
+  ],
+  "link-solid": [
+    "solid"
+  ],
+  "map-outline": [
+    "outline"
+  ],
+  "map-solid": [
+    "solid"
+  ],
+  "minus-outline": [
+    "outline"
+  ],
+  "minus-solid": [
+    "solid"
+  ],
+  "more-horiz-solid": [
+    "solid"
+  ],
+  "more-vert-solid": [
+    "solid"
+  ],
+  "notification-outline": [
+    "outline"
+  ],
+  "notification-solid": [
+    "solid"
+  ],
+  "open-window-outline": [
+    "outline"
+  ],
+  "open-window-solid": [
+    "solid"
+  ],
+  "person-outline": [
+    "outline"
+  ],
+  "person-solid": [
+    "solid"
+  ],
+  "plus-outline": [
+    "outline"
+  ],
+  "plus-solid": [
+    "solid"
+  ],
+  "radio-checked-outline": [
+    "outline"
+  ],
+  "radio-checked-solid": [
+    "solid"
+  ],
+  "radio-outline": [
+    "outline"
+  ],
+  "radio-solid": [
+    "solid"
+  ],
+  "redo-outline": [
+    "outline"
+  ],
+  "redo-solid": [
+    "solid"
+  ],
+  "refresh-outline": [
+    "outline"
+  ],
+  "refresh-solid": [
+    "solid"
+  ],
+  "search-outline": [
+    "outline"
+  ],
+  "search-solid": [
+    "solid"
+  ],
+  "setting-outline": [
+    "outline"
+  ],
+  "setting-solid": [
+    "solid"
+  ],
+  "shipping-local-outline": [
+    "outline"
+  ],
+  "shipping-local-solid": [
+    "solid"
+  ],
+  "shopping-bag-outline": [
+    "outline"
+  ],
+  "shopping-bag-solid": [
+    "solid"
+  ],
+  "swap-horiz-outline": [
+    "outline"
+  ],
+  "swap-horiz-solid": [
+    "solid"
+  ],
+  "swap-vert-outline": [
+    "outline"
+  ],
+  "swap-vert-solid": [
+    "solid"
+  ],
+  "tiket-outline": [
+    "outline"
+  ],
+  "tiket-solid": [
+    "solid"
+  ],
+  "time-outline": [
+    "outline"
+  ],
+  "time-solid": [
+    "solid"
+  ],
+  "undo-outline": [
+    "outline"
+  ],
+  "undo-solid": [
+    "solid"
+  ],
+  "unfold-colse-outline": [
+    "outline"
+  ],
+  "unfold-colse-solid": [
+    "solid"
+  ],
+  "unfold-open-outline": [
+    "outline"
+  ],
+  "unfold-open-solid": [
+    "solid"
+  ],
+  "video-outline": [
+    "outline"
+  ],
+  "video-solid": [
+    "solid"
+  ],
+  "view-list-outline": [
+    "outline"
+  ],
+  "view-table-outline": [
+    "outline"
+  ]
+}

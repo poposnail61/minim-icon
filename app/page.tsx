@@ -12,20 +12,18 @@ interface Icon {
   tags?: string[]
 }
 
-type FilterType = 'all' | 'outline' | 'solid'
-
 export default function Home() {
   const [icons, setIcons] = useState<Icon[]>([])
   const [loading, setLoading] = useState(true)
 
   // Filter States
   const [search, setSearch] = useState('')
-  const [filter, setFilter] = useState<FilterType>('all')
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
 
   // Selection State
   const [selectedIcon, setSelectedIcon] = useState<Icon | null>(null)
 
-  // Visualization States (lifted from IconDetailsPanel)
+  // Visualization States
   const [previewColor, setPreviewColor] = useState<string | null>(null)
   const [previewSize, setPreviewSize] = useState(24)
 
@@ -49,13 +47,24 @@ export default function Home() {
   // Filter Logic
   const filteredIcons = icons.filter(icon => {
     const matchesSearch = icon.name.toLowerCase().includes(search.toLowerCase())
-    const matchesFilter =
-      filter === 'all' ? true :
-        filter === 'outline' ? icon.name.includes('-outline') :
-          filter === 'solid' ? icon.name.includes('-solid') : true
 
-    return matchesSearch && matchesFilter
+    // Tag Filter: AND logic (Must have ALL selected tags)
+    // If no tags selected, match all.
+    const matchesTags = selectedTags.length === 0 || (
+      icon.tags && selectedTags.every(tag => icon.tags!.includes(tag))
+    )
+
+    return matchesSearch && matchesTags
   })
+
+  // Handle Tag Toggle
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prev =>
+      prev.includes(tag)
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    )
+  }
 
   // Handle Icon Click
   const handleIconClick = (icon: Icon) => {
@@ -90,9 +99,9 @@ export default function Home() {
         <SidebarFilter
           search={search}
           setSearch={setSearch}
-          filter={filter}
-          setFilter={setFilter}
-          totalIcons={icons.length}
+          selectedTags={selectedTags}
+          toggleTag={toggleTag}
+          icons={icons}
         />
 
         {/* Main Content */}
@@ -106,19 +115,11 @@ export default function Home() {
             </div>
           ) : (
             <div className="max-w-[1600px] mx-auto">
-              {/* We pass filtered icons directly to IconGrid. 
-                        We need to update IconGrid to accept click handler instead of doing its own internal filtering/search logic if possible, 
-                        OR we pass props to control it. 
-                        Let's reuse IconGrid but bypass its internal controls by passing visual props. 
-                        Wait, IconGrid has internal state for search/filter. 
-                        We should refactor IconGrid to be 'dumb' or pass props to override.
-                        For now, I'll pass the filtered list as 'icons' and hiding controls in IconGrid.
-                    */}
               <IconGrid
                 icons={filteredIcons}
                 showControls={false}
-                onIconClick={handleIconClick} // Need to add this prop to IconGrid
-                layoutMode="minimal" // New prop to hide internal search bar
+                onIconClick={handleIconClick}
+                layoutMode="minimal"
               />
             </div>
           )}
