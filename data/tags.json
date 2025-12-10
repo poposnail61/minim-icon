@@ -1,183 +1,243 @@
 {
   "align-center-horiz-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "align-center-horiz-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "align-center-vert-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "align-center-vert-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "align-down-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "align-down-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "align-left-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "align-left-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "align-right-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "align-right-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "align-up-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "align-up-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-down-left-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-down-left-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-down-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-down-right-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-down-right-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-down-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-end-down-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-end-down-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-end-left-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-end-left-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-end-right-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-end-right-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-end-up-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-end-up-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-in-down-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-in-down-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-in-left-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-in-left-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-in-right-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-in-right-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-in-up-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-in-up-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-left-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-left-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-out-down-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-out-down-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-out-left-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-out-left-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-out-right-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-out-right-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-out-up-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-out-up-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-right-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-right-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-start-down-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-start-down-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-start-left-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-start-left-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-start-right-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-start-right-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-start-up-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-start-up-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-up-left-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-up-left-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-up-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-up-right-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "arrow-up-right-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "arrow-up-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "calendar-outline": [
     "outline"
