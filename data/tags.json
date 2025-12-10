@@ -240,7 +240,8 @@
     "arrow"
   ],
   "calendar-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "calendar-solid": [
     "solid"
@@ -489,16 +490,20 @@
     "solid"
   ],
   "redo-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "redo-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "refresh-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "refresh-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "search-outline": [
     "outline"
@@ -525,16 +530,20 @@
     "solid"
   ],
   "swap-horiz-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "swap-horiz-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "swap-vert-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "swap-vert-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "tiket-outline": [
     "outline"
@@ -549,22 +558,28 @@
     "solid"
   ],
   "undo-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "undo-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "unfold-colse-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "unfold-colse-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "unfold-open-outline": [
-    "outline"
+    "outline",
+    "arrow"
   ],
   "unfold-open-solid": [
-    "solid"
+    "solid",
+    "arrow"
   ],
   "video-outline": [
     "outline"
