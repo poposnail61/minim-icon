@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect, useMemo } from 'react'
 import { Check, Search, Trash2, RefreshCcw } from 'lucide-react'
 
@@ -67,7 +69,7 @@ const IconItem = ({
 
   return (
     <div
-      className={`group relative flex items-center justify-center bg-white rounded-xl transition-all duration-200 cursor-pointer border ${isSelected
+      className={`group relative flex items-center justify-center bg-white rounded-xl transition-all duration-200 cursor-pointer border min-w-[80px] min-h-[80px] ${isSelected
           ? 'border-indigo-500 ring-2 ring-indigo-500 ring-offset-2'
           : 'border-transparent hover:border-gray-200 hover:bg-gray-50'
         }`}
@@ -86,13 +88,13 @@ const IconItem = ({
       {/* Selection Checkbox (Admin Only) */}
       {showControls && onToggleSelection && (
         <div
-          className="absolute top-2 left-2 z-10"
+          className="absolute top-2 left-2 z-20"
           onClick={(e) => {
             e.stopPropagation()
             onToggleSelection()
           }}
         >
-          <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${isSelected
+          <div className={`w-[20px] h-[20px] rounded border flex items-center justify-center transition-colors ${isSelected
               ? 'bg-indigo-500 border-indigo-500'
               : 'bg-white border-gray-300 hover:border-gray-400'
             }`}>
