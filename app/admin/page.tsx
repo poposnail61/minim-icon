@@ -94,24 +94,30 @@ export default function AdminPage() {
     }
   }
 
-  const handleDelete = async (name: string) => {
-    if (!confirm(`Are you sure you want to delete ${name}?`)) return
+  const handleBatchDelete = async () => {
+    if (!confirm(`Are you sure you want to delete ${selectedIcons.length} icons? This cannot be undone.`)) return
 
-    try {
-      const res = await fetch(`/api/icons?name=${name}.svg`, {
-        method: 'DELETE',
-      })
+    let successCount = 0
+    let failCount = 0
 
-      if (res.ok) {
-        setIcons(icons.filter(icon => icon.name !== name))
-        setSelectedIcons(selectedIcons.filter(id => id !== name))
-      } else {
-        alert('Failed to delete icon')
+    // Using a for loop to process sequentially, or Promise.all for parallel
+    for (const name of selectedIcons) {
+      try {
+        const res = await fetch(`/api/icons?name=${name}.svg`, {
+          method: 'DELETE',
+        })
+        if (res.ok) successCount++
+        else failCount++
+      } catch (e) {
+        failCount++
       }
-    } catch (error) {
-      console.error('Delete error:', error)
-      alert('An error occurred while deleting')
     }
+
+    alert(`Deleted ${successCount} icons.${failCount > 0 ? ` Failed: ${failCount}` : ''}`)
+
+    // Refresh
+    setSelectedIcons([])
+    await fetchIcons()
   }
 
   // Tagging Logic
@@ -230,7 +236,6 @@ export default function AdminPage() {
             ) : (
               <IconGrid
                 icons={icons}
-                onDelete={handleDelete}
                 showControls={true}
                 layoutMode="full"
                 onIconClick={toggleSelection}
@@ -258,11 +263,20 @@ export default function AdminPage() {
             </div>
 
             <div className="flex items-center space-x-3 w-full max-w-lg">
+              <button
+                onClick={handleBatchDelete}
+                className="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors font-medium text-sm flex items-center gap-2"
+              >
+                Delete Selected
+              </button>
+
+              <div className="h-6 w-px bg-gray-300 mx-2"></div>
+
               <div className="relative flex-grow">
                 <Tag className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <input
                   type="text"
-                  placeholder="Enter tags (comma separated)..."
+                  placeholder="Enter tags..."
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   value={tagInput}
                   onChange={(e) => setTagInput(e.target.value)}
