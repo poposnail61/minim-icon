@@ -279,8 +279,69 @@ export default function AdminPage() {
             <UploadZone onUpload={handleUpload} isUploading={isUploading} />
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-white rounded-lg shadow p-6 relative">
             <h2 className="text-lg font-medium text-gray-900 mb-4">Manage Icons & Tags</h2>
+
+            {/* Batch Actions Bar - Relocated to TOP */}
+            {selectedIcons.length > 0 && (
+              <div className="sticky top-0 z-[50] mb-6 bg-white border border-indigo-200 rounded-xl shadow-lg p-4 animate-in slide-in-from-top-2 ring-1 ring-indigo-500 ring-offset-2">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                  {/* Left Side: Count & Clear */}
+                  <div className="flex items-center space-x-4 w-full sm:w-auto justify-between sm:justify-start">
+                    <div className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap">
+                      {selectedIcons.length} Selected
+                    </div>
+                    <button
+                      onClick={() => setSelectedIcons([])}
+                      className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-full"
+                      title="Clear Selection"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                  {/* Right Side: Actions */}
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+                    <button
+                      onClick={handleBatchDelete}
+                      className="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors font-medium text-sm flex items-center justify-center gap-2 whitespace-nowrap"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      Delete Selected
+                    </button>
+
+                    <div className="hidden sm:block h-6 w-px bg-gray-300 mx-2"></div>
+
+                    <div className="flex gap-2 w-full sm:w-auto">
+                      <div className="relative flex-grow sm:flex-grow-0 sm:w-64">
+                        <Tag className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+                        <input
+                          type="text"
+                          placeholder="Enter tags..."
+                          className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                          value={tagInput}
+                          onChange={(e) => setTagInput(e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && handleBatchAddTags()}
+                        />
+                      </div>
+                      <button
+                        onClick={handleBatchAddTags}
+                        disabled={!tagInput.trim() || isAddingTags}
+                        className="flex items-center justify-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 transition-colors whitespace-nowrap"
+                      >
+                        {isAddingTags ? (
+                          <span className="animate-spin">...</span>
+                        ) : (
+                          <Plus className="w-4 h-4" />
+                        )}
+                        <span className="hidden sm:inline">Add Tags</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {loading ? (
               <div className="text-center py-12">Loading...</div>
             ) : (
@@ -305,67 +366,6 @@ export default function AdminPage() {
         onDelete={handleSingleDelete}
         onUpdateTags={handleSingleTagUpdate}
       />
-
-      {/* Floating Tag Management Bar */}
-      {selectedIcons.length > 0 && (
-        <div className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-2xl p-4 animate-in slide-in-from-bottom-5 z-[100]">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-
-            {/* Left Side: Count & Clear */}
-            <div className="flex items-center space-x-4 w-full sm:w-auto justify-between sm:justify-start">
-              <div className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap">
-                {selectedIcons.length} Selected
-              </div>
-              <button
-                onClick={() => setSelectedIcons([])}
-                className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-full"
-                title="Clear Selection"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Right Side: Actions */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
-              <button
-                onClick={handleBatchDelete}
-                className="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors font-medium text-sm flex items-center justify-center gap-2 whitespace-nowrap"
-              >
-                <Trash2 className="w-4 h-4" />
-                Delete Selected
-              </button>
-
-              <div className="hidden sm:block h-6 w-px bg-gray-300 mx-2"></div>
-
-              <div className="flex gap-2 w-full sm:w-auto">
-                <div className="relative flex-grow sm:flex-grow-0 sm:w-64">
-                  <Tag className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
-                  <input
-                    type="text"
-                    placeholder="Enter tags..."
-                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    value={tagInput}
-                    onChange={(e) => setTagInput(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleBatchAddTags()}
-                  />
-                </div>
-                <button
-                  onClick={handleBatchAddTags}
-                  disabled={!tagInput.trim() || isAddingTags}
-                  className="flex items-center justify-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 transition-colors whitespace-nowrap"
-                >
-                  {isAddingTags ? (
-                    <span className="animate-spin">...</span>
-                  ) : (
-                    <Plus className="w-4 h-4" />
-                  )}
-                  <span className="hidden sm:inline">Add Tags</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
