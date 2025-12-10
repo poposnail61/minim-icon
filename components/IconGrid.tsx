@@ -69,12 +69,15 @@ const IconItem = ({
 
   return (
     <div
-      className={`group relative flex items-center justify-center bg-white rounded-xl transition-all duration-200 cursor-pointer border min-w-[80px] min-h-[80px] ${isSelected
+      className={`group relative flex items-center justify-center bg-white rounded-xl transition-all duration-200 cursor-pointer border min-w-[80px] min-h-[80px] pt-8 ${isSelected
           ? 'border-indigo-500 ring-2 ring-indigo-500 ring-offset-2'
           : 'border-transparent hover:border-gray-200 hover:bg-gray-50'
         }`}
       style={{
-        padding: '1rem',
+        paddingBottom: '1rem',
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
+        // Top padding handled by Tailwind class pt-8
       }}
       onClick={() => {
         if (onClick) {

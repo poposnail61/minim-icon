@@ -308,7 +308,7 @@ export default function AdminPage() {
 
       {/* Floating Tag Management Bar */}
       {selectedIcons.length > 0 && (
-        <div className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-lg p-4 animate-in slide-in-from-bottom-5">
+        <div className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-lg p-4 animate-in slide-in-from-bottom-5 z-50">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">
