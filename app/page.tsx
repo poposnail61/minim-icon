@@ -2,16 +2,32 @@
 
 import { useState, useEffect } from 'react'
 import IconGrid from '../components/IconGrid'
+import SidebarFilter from '../components/SidebarFilter'
+import IconDetailsPanel from '../components/IconDetailsPanel'
 import Link from 'next/link'
 
 interface Icon {
   name: string
   url: string
+  tags?: string[]
 }
+
+type FilterType = 'all' | 'outline' | 'solid'
 
 export default function Home() {
   const [icons, setIcons] = useState<Icon[]>([])
   const [loading, setLoading] = useState(true)
+
+  // Filter States
+  const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState<FilterType>('all')
+
+  // Selection State
+  const [selectedIcon, setSelectedIcon] = useState<Icon | null>(null)
+
+  // Visualization States (lifted from IconDetailsPanel)
+  const [previewColor, setPreviewColor] = useState<string | null>(null)
+  const [previewSize, setPreviewSize] = useState(24)
 
   useEffect(() => {
     const fetchIcons = async () => {
@@ -30,16 +46,32 @@ export default function Home() {
     fetchIcons()
   }, [])
 
+  // Filter Logic
+  const filteredIcons = icons.filter(icon => {
+    const matchesSearch = icon.name.toLowerCase().includes(search.toLowerCase())
+    const matchesFilter =
+      filter === 'all' ? true :
+        filter === 'outline' ? icon.name.includes('-outline') :
+          filter === 'solid' ? icon.name.includes('-solid') : true
+
+    return matchesSearch && matchesFilter
+  })
+
+  // Handle Icon Click
+  const handleIconClick = (icon: Icon) => {
+    setSelectedIcon(icon)
+  }
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Minimal Header */}
-      <header className="border-b border-gray-100 bg-white">
-        <div className="max-w-[1400px] mx-auto h-16 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* Header */}
+      <header className="border-b border-gray-200 bg-white sticky top-0 z-20">
+        <div className="h-16 px-4 sm:px-6 flex justify-between items-center">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
             </div>
             <h1 className="text-xl font-bold text-gray-900 tracking-tight">
               Minim Icon
@@ -53,51 +85,57 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-[1400px] mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        {/* Icon Gallery */}
-        <div className="min-h-[60vh]">
+      <div className="flex flex-1 overflow-hidden relative">
+        {/* Left Sidebar */}
+        <SidebarFilter
+          search={search}
+          setSearch={setSearch}
+          filter={filter}
+          setFilter={setFilter}
+          totalIcons={icons.length}
+        />
+
+        {/* Main Content */}
+        <main className="flex-1 overflow-y-auto bg-gray-50/50 p-6 sm:p-8">
           {loading ? (
             <div className="flex items-center justify-center h-64 text-gray-400">
-                <div className="animate-pulse flex flex-col items-center">
-                    <div className="w-12 h-12 bg-gray-200 rounded-full mb-4"></div>
-                    <div className="h-4 w-32 bg-gray-200 rounded"></div>
-                </div>
+              <div className="animate-pulse flex flex-col items-center">
+                <div className="w-12 h-12 bg-gray-200 rounded-full mb-4"></div>
+                <div className="h-4 w-32 bg-gray-200 rounded"></div>
+              </div>
             </div>
           ) : (
-            <IconGrid icons={icons} showControls={false} />
+            <div className="max-w-[1600px] mx-auto">
+              {/* We pass filtered icons directly to IconGrid. 
+                        We need to update IconGrid to accept click handler instead of doing its own internal filtering/search logic if possible, 
+                        OR we pass props to control it. 
+                        Let's reuse IconGrid but bypass its internal controls by passing visual props. 
+                        Wait, IconGrid has internal state for search/filter. 
+                        We should refactor IconGrid to be 'dumb' or pass props to override.
+                        For now, I'll pass the filtered list as 'icons' and hiding controls in IconGrid.
+                    */}
+              <IconGrid
+                icons={filteredIcons}
+                showControls={false}
+                onIconClick={handleIconClick} // Need to add this prop to IconGrid
+                layoutMode="minimal" // New prop to hide internal search bar
+              />
+            </div>
           )}
-        </div>
+        </main>
 
-        {/* Developer Guide (Simplified) */}
-        <div className="mt-20 border-t border-gray-100 pt-12 pb-20">
-            <div className="max-w-2xl mx-auto text-center mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">How to use</h2>
-                <p className="text-gray-500">One line of code to power your icons.</p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="bg-gray-50 rounded-2xl p-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">1. Import CSS</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  Add this to your HTML <code>&lt;head&gt;</code>.
-                </p>
-                <div className="bg-white border border-gray-200 rounded-xl p-4 font-mono text-xs text-gray-600 overflow-x-auto whitespace-nowrap">
-                    &lt;link rel="stylesheet" href="https://minim-icon.vercel.app/api/icons.css" /&gt;
-                </div>
-              </div>
-
-              <div className="bg-gray-50 rounded-2xl p-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">2. Use Icon</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  Just use the class name.
-                </p>
-                <div className="bg-white border border-gray-200 rounded-xl p-4 font-mono text-sm text-gray-600">
-                    &lt;i class="icon icon-globe"&gt;&lt;/i&gt;
-                </div>
-              </div>
-            </div>
-        </div>
-      </main>
+        {/* Right Details Panel */}
+        {selectedIcon && (
+          <IconDetailsPanel
+            icon={selectedIcon}
+            onClose={() => setSelectedIcon(null)}
+            color={previewColor}
+            setColor={setPreviewColor}
+            size={previewSize}
+            setSize={setPreviewSize}
+          />
+        )}
+      </div>
     </div>
   )
 }

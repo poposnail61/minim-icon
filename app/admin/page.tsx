@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react'
 import UploadZone from '../../components/UploadZone'
 import IconGrid from '../../components/IconGrid'
+import { Tag, Plus, X } from 'lucide-react'
 
 interface Icon {
   name: string
   url: string
+  tags?: string[]
 }
 
 export default function AdminPage() {
@@ -15,6 +17,11 @@ export default function AdminPage() {
   const [icons, setIcons] = useState<Icon[]>([])
   const [loading, setLoading] = useState(true)
   const [isUploading, setIsUploading] = useState(false)
+
+  // Tagging State
+  const [selectedIcons, setSelectedIcons] = useState<string[]>([])
+  const [tagInput, setTagInput] = useState('')
+  const [isAddingTags, setIsAddingTags] = useState(false)
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -97,12 +104,62 @@ export default function AdminPage() {
 
       if (res.ok) {
         setIcons(icons.filter(icon => icon.name !== name))
+        setSelectedIcons(selectedIcons.filter(id => id !== name))
       } else {
         alert('Failed to delete icon')
       }
     } catch (error) {
       console.error('Delete error:', error)
       alert('An error occurred while deleting')
+    }
+  }
+
+  // Tagging Logic
+  const toggleSelection = (icon: Icon) => {
+    if (selectedIcons.includes(icon.name)) {
+      setSelectedIcons(selectedIcons.filter(id => id !== icon.name))
+    } else {
+      setSelectedIcons([...selectedIcons, icon.name])
+    }
+  }
+
+  const handleAddTags = async () => {
+    if (!tagInput.trim()) return
+    setIsAddingTags(true)
+
+    const tagsToAdd = tagInput.split(',').map(t => t.trim()).filter(Boolean)
+    const updates: Record<string, string[]> = {}
+
+    selectedIcons.forEach(iconName => {
+      const icon = icons.find(i => i.name === iconName)
+      if (icon) {
+        const currentTags = icon.tags || []
+        // Add new tags avoiding duplicates
+        const newTags = Array.from(new Set([...currentTags, ...tagsToAdd]))
+        updates[iconName] = newTags
+      }
+    })
+
+    try {
+      const res = await fetch('/api/icons', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tags: updates })
+      })
+
+      if (res.ok) {
+        setTagInput('')
+        setSelectedIcons([])
+        await fetchIcons() // Refresh to show new tags
+        alert('Tags added successfully!')
+      } else {
+        alert('Failed to add tags')
+      }
+    } catch (error) {
+      console.error('Tag update error:', error)
+      alert('Error updating tags')
+    } finally {
+      setIsAddingTags(false)
     }
   }
 
@@ -144,7 +201,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 relative pb-20">
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <h1 className="text-3xl font-bold text-gray-900">
@@ -167,15 +224,67 @@ export default function AdminPage() {
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-lg font-medium text-gray-900 mb-4">Manage Icons</h2>
+            <h2 className="text-lg font-medium text-gray-900 mb-4">Manage Icons & Tags</h2>
             {loading ? (
               <div className="text-center py-12">Loading...</div>
             ) : (
-              <IconGrid icons={icons} onDelete={handleDelete} showControls={true} />
+              <IconGrid
+                icons={icons}
+                onDelete={handleDelete}
+                showControls={true}
+                layoutMode="full"
+                onIconClick={toggleSelection}
+                selectedIds={selectedIcons}
+              />
             )}
           </div>
         </div>
       </main>
+
+      {/* Floating Tag Management Bar */}
+      {selectedIcons.length > 0 && (
+        <div className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-lg p-4 animate-in slide-in-from-bottom-5">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">
+                {selectedIcons.length} Selected
+              </div>
+              <button
+                onClick={() => setSelectedIcons([])}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="flex items-center space-x-3 w-full max-w-lg">
+              <div className="relative flex-grow">
+                <Tag className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <input
+                  type="text"
+                  placeholder="Enter tags (comma separated)..."
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  value={tagInput}
+                  onChange={(e) => setTagInput(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleAddTags()}
+                />
+              </div>
+              <button
+                onClick={handleAddTags}
+                disabled={!tagInput.trim() || isAddingTags}
+                className="flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 transition-colors"
+              >
+                {isAddingTags ? (
+                  <span className="animate-spin mr-2">...</span>
+                ) : (
+                  <Plus className="w-4 h-4" />
+                )}
+                <span>Add Tags</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

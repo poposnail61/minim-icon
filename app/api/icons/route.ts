@@ -33,24 +33,43 @@ export async function GET() {
       return NextResponse.json({ error: 'GITHUB_TOKEN not configured' }, { status: 500 })
     }
 
-    let data
+    // 1. Fetch Icons
+    let iconsData
     try {
-      data = await githubRequest('public/icons')
+      iconsData = await githubRequest('public/icons')
     } catch (error: any) {
       if (error.message === 'Not Found') {
-        return NextResponse.json({ icons: [] })
+        iconsData = []
+      } else {
+        throw error
       }
-      throw error
     }
 
-    // Filter for SVGs and map to raw URLs
-    const icons = Array.isArray(data)
-      ? data
+    // 2. Fetch Tags
+    let tagsMap: Record<string, string[]> = {}
+    try {
+      const tagsRes = await githubRequest('data/tags.json')
+      const content = Buffer.from(tagsRes.content, 'base64').toString('utf-8')
+      tagsMap = JSON.parse(content)
+    } catch (error: any) {
+      // If tags.json doesn't exist, just use empty map
+      if (error.message !== 'Not Found') {
+        console.warn('Failed to fetch tags.json:', error)
+      }
+    }
+
+    // 3. Merge and Return
+    const icons = Array.isArray(iconsData)
+      ? iconsData
         .filter((file: any) => file.name.endsWith('.svg'))
-        .map((file: any) => ({
-          name: file.name.replace('.svg', ''),
-          url: `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${BRANCH}/public/icons/${file.name}`
-        }))
+        .map((file: any) => {
+          const name = file.name.replace('.svg', '')
+          return {
+            name: name,
+            url: `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${BRANCH}/public/icons/${file.name}`,
+            tags: tagsMap[name] || []
+          }
+        })
       : []
 
     return NextResponse.json({ icons })
@@ -102,5 +121,49 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('GitHub Upload Error:', error)
     return NextResponse.json({ error: 'Upload failed', details: (error as Error).message }, { status: 500 })
+  }
+}
+
+// Update Tags
+export async function PUT(request: Request) {
+  try {
+    if (!GITHUB_TOKEN) {
+      return NextResponse.json({ error: 'GITHUB_TOKEN not configured' }, { status: 500 })
+    }
+
+    const { tags } = await request.json() // Expecting { "icon-name": ["tag1"], ... }
+
+    const path = 'data/tags.json'
+    let sha: string | undefined
+    let currentTags = {}
+
+    try {
+      const existing = await githubRequest(path)
+      sha = existing.sha
+      const content = Buffer.from(existing.content, 'base64').toString('utf-8')
+      currentTags = JSON.parse(content)
+    } catch (e) {
+      // File doesn't exist, start empty
+    }
+
+    const newTags = { ...currentTags, ...tags }
+    // Clean up empty tags if needed? keeping it simple for now
+
+    const content = Buffer.from(JSON.stringify(newTags, null, 2)).toString('base64')
+
+    await githubRequest(path, {
+      method: 'PUT',
+      body: JSON.stringify({
+        message: `Update tags via Minim Icon`,
+        content: content,
+        sha: sha,
+        branch: BRANCH
+      })
+    })
+
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('GitHub Tag Update Error:', error)
+    return NextResponse.json({ error: 'Failed to update tags' }, { status: 500 })
   }
 }
