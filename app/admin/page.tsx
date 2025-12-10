@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react'
 import UploadZone from '../../components/UploadZone'
 import IconGrid from '../../components/IconGrid'
+import AdminIconModal from '../../components/AdminIconModal'
 import { Tag, Plus, X } from 'lucide-react'
 
+// Define Icon interface locally if not available globally
 interface Icon {
   name: string
   url: string
@@ -22,6 +24,9 @@ export default function AdminPage() {
   const [selectedIcons, setSelectedIcons] = useState<string[]>([])
   const [tagInput, setTagInput] = useState('')
   const [isAddingTags, setIsAddingTags] = useState(false)
+
+  // Modal State
+  const [activeIcon, setActiveIcon] = useState<Icon | null>(null)
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -94,13 +99,13 @@ export default function AdminPage() {
     }
   }
 
+  // Batch Delete
   const handleBatchDelete = async () => {
     if (!confirm(`Are you sure you want to delete ${selectedIcons.length} icons? This cannot be undone.`)) return
 
     let successCount = 0
     let failCount = 0
 
-    // Using a for loop to process sequentially, or Promise.all for parallel
     for (const name of selectedIcons) {
       try {
         const res = await fetch(`/api/icons?name=${name}.svg`, {
@@ -120,7 +125,25 @@ export default function AdminPage() {
     await fetchIcons()
   }
 
-  // Tagging Logic
+  // Single Delete (Modal)
+  const handleSingleDelete = async (name: string) => {
+    try {
+      const res = await fetch(`/api/icons?name=${name}.svg`, {
+        method: 'DELETE',
+      })
+      if (res.ok) {
+        setActiveIcon(null) // Close modal
+        await fetchIcons()
+      } else {
+        alert('Failed to delete icon')
+      }
+    } catch (error) {
+      console.error('Delete error:', error)
+      alert('An error occurred')
+    }
+  }
+
+  // Selection Logic
   const toggleSelection = (icon: Icon) => {
     if (selectedIcons.includes(icon.name)) {
       setSelectedIcons(selectedIcons.filter(id => id !== icon.name))
@@ -129,7 +152,8 @@ export default function AdminPage() {
     }
   }
 
-  const handleAddTags = async () => {
+  // Batch Tagging
+  const handleBatchAddTags = async () => {
     if (!tagInput.trim()) return
     setIsAddingTags(true)
 
@@ -140,7 +164,6 @@ export default function AdminPage() {
       const icon = icons.find(i => i.name === iconName)
       if (icon) {
         const currentTags = icon.tags || []
-        // Add new tags avoiding duplicates
         const newTags = Array.from(new Set([...currentTags, ...tagsToAdd]))
         updates[iconName] = newTags
       }
@@ -156,7 +179,7 @@ export default function AdminPage() {
       if (res.ok) {
         setTagInput('')
         setSelectedIcons([])
-        await fetchIcons() // Refresh to show new tags
+        await fetchIcons()
         alert('Tags added successfully!')
       } else {
         alert('Failed to add tags')
@@ -168,6 +191,33 @@ export default function AdminPage() {
       setIsAddingTags(false)
     }
   }
+
+  // Single Tag Update (Modal)
+  const handleSingleTagUpdate = async (name: string, newTags: string[]) => {
+    const updates = { [name]: newTags }
+    try {
+      const res = await fetch('/api/icons', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tags: updates })
+      })
+
+      if (res.ok) {
+        const updatedIcons = icons.map(i => i.name === name ? { ...i, tags: newTags } : i)
+        setIcons(updatedIcons)
+
+        if (activeIcon && activeIcon.name === name) {
+          setActiveIcon({ ...activeIcon, tags: newTags })
+        }
+      } else {
+        alert('Failed to update tags')
+      }
+    } catch (error) {
+      console.error('Tag update error:', error)
+      alert('Error updating tags')
+    }
+  }
+
 
   if (!isAuthenticated) {
     return (
@@ -238,13 +288,23 @@ export default function AdminPage() {
                 icons={icons}
                 showControls={true}
                 layoutMode="full"
-                onIconClick={toggleSelection}
+                onIconClick={setActiveIcon}
                 selectedIds={selectedIcons}
+                onToggleSelection={toggleSelection}
               />
             )}
           </div>
         </div>
       </main>
+
+      {/* Admin Icon Modal */}
+      <AdminIconModal
+        icon={activeIcon}
+        isOpen={!!activeIcon}
+        onClose={() => setActiveIcon(null)}
+        onDelete={handleSingleDelete}
+        onUpdateTags={handleSingleTagUpdate}
+      />
 
       {/* Floating Tag Management Bar */}
       {selectedIcons.length > 0 && (
@@ -280,11 +340,11 @@ export default function AdminPage() {
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   value={tagInput}
                   onChange={(e) => setTagInput(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleAddTags()}
+                  onKeyDown={(e) => e.key === 'Enter' && handleBatchAddTags()}
                 />
               </div>
               <button
-                onClick={handleAddTags}
+                onClick={handleBatchAddTags}
                 disabled={!tagInput.trim() || isAddingTags}
                 className="flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 transition-colors"
               >

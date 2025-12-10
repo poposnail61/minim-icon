@@ -1,11 +1,12 @@
-'use client'
+import { useState, useEffect, useMemo } from 'react'
+import { Check, Search, Trash2, RefreshCcw } from 'lucide-react'
 
-import { useState, useMemo, useEffect } from 'react'
-import { Search, Copy, Check, Trash2, RefreshCcw } from 'lucide-react'
-
+// Define Icon interface locally if not available globally, or rely on parent.
+// For safety, defining minimal interface here or assuming global.
 interface Icon {
   name: string
   url: string
+  tags?: string[]
 }
 
 interface IconGridProps {
@@ -14,6 +15,8 @@ interface IconGridProps {
   showControls?: boolean
   onIconClick?: (icon: Icon) => void
   layoutMode?: 'full' | 'minimal'
+  selectedIds?: string[]
+  onToggleSelection?: (icon: Icon) => void
 }
 
 type FilterType = 'all' | 'outline' | 'solid'
@@ -35,7 +38,9 @@ const IconItem = ({
   onCopy,
   copied,
   selectedColor,
-  onClick
+  onClick,
+  isSelected,
+  onToggleSelection
 }: {
   icon: Icon
   size: number
@@ -45,6 +50,8 @@ const IconItem = ({
   copied: string | null
   selectedColor: string | null
   onClick?: () => void
+  isSelected?: boolean
+  onToggleSelection?: () => void
 }) => {
   const [aspectRatio, setAspectRatio] = useState(1)
 
@@ -60,7 +67,10 @@ const IconItem = ({
 
   return (
     <div
-      className="group relative flex items-center justify-center bg-white rounded-xl hover:bg-gray-50 transition-colors duration-200 cursor-pointer border border-transparent hover:border-gray-200"
+      className={`group relative flex items-center justify-center bg-white rounded-xl transition-all duration-200 cursor-pointer border ${isSelected
+          ? 'border-indigo-500 ring-2 ring-indigo-500 ring-offset-2'
+          : 'border-transparent hover:border-gray-200 hover:bg-gray-50'
+        }`}
       style={{
         padding: '1rem',
       }}
@@ -73,6 +83,24 @@ const IconItem = ({
       }}
       title={icon.name}
     >
+      {/* Selection Checkbox (Admin Only) */}
+      {showControls && onToggleSelection && (
+        <div
+          className="absolute top-2 left-2 z-10"
+          onClick={(e) => {
+            e.stopPropagation()
+            onToggleSelection()
+          }}
+        >
+          <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${isSelected
+              ? 'bg-indigo-500 border-indigo-500'
+              : 'bg-white border-gray-300 hover:border-gray-400'
+            }`}>
+            {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+          </div>
+        </div>
+      )}
+
       <div
         className="transition-transform duration-200 group-hover:scale-110 text-gray-700 group-hover:text-gray-900"
       >
@@ -106,25 +134,18 @@ const IconItem = ({
         )}
       </div>
 
-      {/* Copied Feedback Overlay (Only show if not in selection mode) */}
+      {/* Tags Indicator */}
+      {icon.tags && icon.tags.length > 0 && (
+        <div className="absolute bottom-1 right-2 flex gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+        </div>
+      )}
+
+      {/* Copied Feedback Overlay (Only show if not in selection mode or clicked) */}
       {!onClick && copied === icon.name && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-900/90 rounded-xl animate-in fade-in duration-200 z-10">
           <Check className="w-6 h-6 text-white" />
         </div>
-      )}
-
-      {/* Admin Delete Button */}
-      {showControls && onDelete && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onDelete(icon.name)
-          }}
-          className="absolute top-1 right-1 p-1 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded opacity-0 group-hover:opacity-100 transition-all"
-          title="Delete Icon"
-        >
-          <Trash2 className="w-3 h-3" />
-        </button>
       )}
     </div>
   )
@@ -135,7 +156,9 @@ export default function IconGrid({
   onDelete,
   showControls = false,
   onIconClick,
-  layoutMode = 'full'
+  layoutMode = 'full',
+  selectedIds = [],
+  onToggleSelection
 }: IconGridProps) {
   const [search, setSearch] = useState('')
   const [size, setSize] = useState(24)
@@ -201,8 +224,8 @@ export default function IconGrid({
                   key={f}
                   onClick={() => setFilter(f)}
                   className={`px-4 py-2 text-sm font-medium rounded-lg capitalize transition-all ${filter === f
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-500 hover:text-gray-700'
+                      ? 'bg-white text-gray-900 shadow-sm'
+                      : 'text-gray-500 hover:text-gray-700'
                     }`}
                 >
                   {f}
@@ -222,8 +245,8 @@ export default function IconGrid({
                     if (color.value === null) setCustomHex('')
                   }}
                   className={`w-8 h-8 rounded-md border flex items-center justify-center transition-all ${selectedColor === color.value
-                    ? 'ring-2 ring-indigo-500 ring-offset-2'
-                    : 'hover:scale-110'
+                      ? 'ring-2 ring-indigo-500 ring-offset-2'
+                      : 'hover:scale-110'
                     }`}
                   style={{
                     backgroundColor: color.value || '#transparent',
@@ -287,6 +310,8 @@ export default function IconGrid({
             copied={copied}
             selectedColor={selectedColor}
             onClick={onIconClick ? () => onIconClick(icon) : undefined}
+            isSelected={selectedIds.includes(icon.name)}
+            onToggleSelection={onToggleSelection ? () => onToggleSelection(icon) : undefined}
           />
         ))}
       </div>
