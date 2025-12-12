@@ -352,6 +352,7 @@ export default function AdminPage() {
                 onIconClick={setActiveIcon}
                 selectedIds={selectedIcons}
                 onToggleSelection={toggleSelection}
+                onBatchSelect={setSelectedIcons}
               />
             )}
           </div>

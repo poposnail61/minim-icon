@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 interface SidebarFilterProps {
     search: string
     setSearch: (value: string) => void
-    selectedTags: string[]
+    tagFilters: Record<string, 'include' | 'exclude'>
     toggleTag: (tag: string) => void
     icons: { tags?: string[] }[]
 }
@@ -14,7 +14,7 @@ interface SidebarFilterProps {
 export default function SidebarFilter({
     search,
     setSearch,
-    selectedTags,
+    tagFilters,
     toggleTag,
     icons
 }: SidebarFilterProps) {
@@ -31,7 +31,7 @@ export default function SidebarFilter({
     }, [icons])
 
     return (
-        <div className="w-64 flex-shrink-0 border-r border-gray-200 bg-white h-[calc(100vh-64px)] overflow-y-auto sticky top-16 hidden lg:block">
+        <div className="w-72 flex-shrink-0 border-r border-gray-200 bg-white h-full overflow-y-auto hidden lg:block">
             <div className="p-6 space-y-8">
                 {/* Stats */}
                 <div>
@@ -61,9 +61,9 @@ export default function SidebarFilter({
                 <div>
                     <div className="flex items-center justify-between mb-3">
                         <h3 className="text-sm font-medium text-gray-900">Filter by Tags</h3>
-                        {selectedTags.length > 0 && (
+                        {Object.keys(tagFilters).length > 0 && (
                             <span className="text-xs text-indigo-600 font-medium">
-                                {selectedTags.length} active
+                                {Object.keys(tagFilters).length} active
                             </span>
                         )}
                     </div>
@@ -71,17 +71,26 @@ export default function SidebarFilter({
                     <div className="flex flex-wrap gap-2">
                         {availableTags.length > 0 ? (
                             availableTags.map((tag) => {
-                                const isActive = selectedTags.includes(tag)
+                                const status = tagFilters[tag]
+                                let buttonClass = 'bg-white text-gray-600 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                                let iconClass = 'text-gray-400'
+
+                                if (status === 'include') {
+                                    buttonClass = 'bg-indigo-100 text-indigo-800 border-indigo-200 ring-1 ring-indigo-500 ring-offset-1'
+                                    iconClass = 'text-indigo-500'
+                                } else if (status === 'exclude') {
+                                    buttonClass = 'bg-red-100 text-red-800 border-red-200 ring-1 ring-red-500 ring-offset-1 line-through decoration-red-500'
+                                    iconClass = 'text-red-500'
+                                }
+
                                 return (
                                     <button
                                         key={tag}
                                         onClick={() => toggleTag(tag)}
-                                        className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 ${isActive
-                                                ? 'bg-indigo-100 text-indigo-800 border-indigo-200 ring-1 ring-indigo-500 ring-offset-1'
-                                                : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                                            }`}
+                                        className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 ${buttonClass}`}
+                                        title={status === 'include' ? 'Must Include' : status === 'exclude' ? 'Must Exclude' : 'Click to Filter'}
                                     >
-                                        <Tag className={`w-3 h-3 mr-1.5 ${isActive ? 'text-indigo-500' : 'text-gray-400'}`} />
+                                        <Tag className={`w-3 h-3 mr-1.5 ${iconClass}`} />
                                         {tag}
                                     </button>
                                 )

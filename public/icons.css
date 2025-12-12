@@ -396,6 +396,42 @@
   -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/camera-solid.svg);
 }
 
+.icon-chat-more-outline {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-more-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-more-outline.svg);
+}
+
+.icon-chat-more-solid {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-more-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-more-solid.svg);
+}
+
+.icon-chat-note-outline {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-note-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-note-outline.svg);
+}
+
+.icon-chat-note-solid {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-note-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-note-solid.svg);
+}
+
+.icon-chat-outline {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-outline.svg);
+}
+
+.icon-chat-solid {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/chat-solid.svg);
+}
+
 .icon-check-outline {
   --ratio: 1;
   mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/check-outline.svg);
@@ -738,6 +774,48 @@
   -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/link-solid.svg);
 }
 
+.icon-logo-instagram-color {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-instagram-color.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-instagram-color.svg);
+}
+
+.icon-logo-instagram {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-instagram.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-instagram.svg);
+}
+
+.icon-logo-kakao {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-kakao.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-kakao.svg);
+}
+
+.icon-logo-tiktok-color {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-tiktok-color.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-tiktok-color.svg);
+}
+
+.icon-logo-tiktok {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-tiktok.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-tiktok.svg);
+}
+
+.icon-logo-youtube-color {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-youtube-color.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-youtube-color.svg);
+}
+
+.icon-logo-youtube {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-youtube.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/logo-youtube.svg);
+}
+
 .icon-map-outline {
   --ratio: 1;
   mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/map-outline.svg);
@@ -772,6 +850,18 @@
   --ratio: 1;
   mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/more-vert-solid.svg);
   -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/more-vert-solid.svg);
+}
+
+.icon-notification-outline {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/notification-outline.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/notification-outline.svg);
+}
+
+.icon-notification-solid {
+  --ratio: 1;
+  mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/notification-solid.svg);
+  -webkit-mask-image: url(https://raw.githubusercontent.com/poposnail61/minim-icon/main/public/icons/notification-solid.svg);
 }
 
 .icon-open-window-outline {

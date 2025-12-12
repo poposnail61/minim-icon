@@ -18,7 +18,7 @@ export default function Home() {
 
   // Filter States
   const [search, setSearch] = useState('')
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [tagFilters, setTagFilters] = useState<Record<string, 'include' | 'exclude'>>({})
 
   // Selection State
   const [selectedIcon, setSelectedIcon] = useState<Icon | null>(null)
@@ -48,22 +48,41 @@ export default function Home() {
   const filteredIcons = icons.filter(icon => {
     const matchesSearch = icon.name.toLowerCase().includes(search.toLowerCase())
 
-    // Tag Filter: AND logic (Must have ALL selected tags)
-    // If no tags selected, match all.
-    const matchesTags = selectedTags.length === 0 || (
-      icon.tags && selectedTags.every(tag => icon.tags!.includes(tag))
-    )
+    const includedTags = Object.entries(tagFilters)
+      .filter(([_, status]) => status === 'include')
+      .map(([tag]) => tag)
 
-    return matchesSearch && matchesTags
+    const excludedTags = Object.entries(tagFilters)
+      .filter(([_, status]) => status === 'exclude')
+      .map(([tag]) => tag)
+
+    const iconTags = icon.tags || []
+
+    // 1. Must include ALL 'includedTags' (AND logic)
+    const hasAllIncludes = includedTags.length === 0 || includedTags.every(t => iconTags.includes(t))
+
+    // 2. Must NOT include ANY 'excludedTags' (NOT logic)
+    const hasNoExcludes = excludedTags.length === 0 || !excludedTags.some(t => iconTags.includes(t))
+
+    return matchesSearch && hasAllIncludes && hasNoExcludes
   })
 
-  // Handle Tag Toggle
+  // Handle Tag Toggle (Tri-state: Include -> Exclude -> Off)
   const toggleTag = (tag: string) => {
-    setSelectedTags(prev =>
-      prev.includes(tag)
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
-    )
+    setTagFilters(prev => {
+      const current = prev[tag]
+      const next = { ...prev }
+
+      if (!current) {
+        next[tag] = 'include'
+      } else if (current === 'include') {
+        next[tag] = 'exclude'
+      } else {
+        delete next[tag]
+      }
+
+      return next
+    })
   }
 
   // Handle Icon Click
@@ -72,7 +91,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="h-screen bg-white flex flex-col">
       {/* Header */}
       <header className="border-b border-gray-200 bg-white sticky top-0 z-20">
         <div className="h-16 px-4 sm:px-6 flex justify-between items-center">
@@ -99,7 +118,7 @@ export default function Home() {
         <SidebarFilter
           search={search}
           setSearch={setSearch}
-          selectedTags={selectedTags}
+          tagFilters={tagFilters}
           toggleTag={toggleTag}
           icons={icons}
         />

@@ -17,6 +17,7 @@ interface IconGridProps {
   layoutMode?: 'full' | 'minimal'
   selectedIds?: string[]
   onToggleSelection?: (icon: Icon) => void
+  onBatchSelect?: (ids: string[]) => void
 }
 
 const COLORS = [
@@ -157,17 +158,25 @@ export default function IconGrid({
   onIconClick,
   layoutMode = 'full',
   selectedIds = [],
-  onToggleSelection
+  onToggleSelection,
+  onBatchSelect
 }: IconGridProps) {
   const [search, setSearch] = useState('')
   const [size, setSize] = useState(24)
   const [copied, setCopied] = useState<string | null>(null)
 
-  // Internal Tag Filtering
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
-
+  const [tagFilters, setTagFilters] = useState<Record<string, 'include' | 'exclude'>>({})
   const [selectedColor, setSelectedColor] = useState<string | null>(null)
   const [customHex, setCustomHex] = useState('')
+
+  // Drag Selection State
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragStart, setDragStart] = useState<{ x: number, y: number } | null>(null)
+  const [dragCurrent, setDragCurrent] = useState<{ x: number, y: number } | null>(null)
+  const [dragSelection, setDragSelection] = useState<string[]>([])
+
+  // Refs
+  const iconRefs = useMemo(() => new Map<string, HTMLElement>(), [])
 
   // Compute Available Tags
   const availableTags = useMemo(() => {
@@ -185,18 +194,109 @@ export default function IconGrid({
     return icons.filter(icon => {
       const matchesSearch = icon.name.toLowerCase().includes(search.toLowerCase())
 
-      const matchesTags = selectedTags.length === 0 || (
-        icon.tags && selectedTags.every(t => icon.tags!.includes(t))
-      )
+      const includedTags = Object.entries(tagFilters)
+        .filter(([_, status]) => status === 'include')
+        .map(([tag]) => tag)
 
-      return matchesSearch && matchesTags
+      const excludedTags = Object.entries(tagFilters)
+        .filter(([_, status]) => status === 'exclude')
+        .map(([tag]) => tag)
+
+      const iconTags = icon.tags || []
+
+      // 1. Must include ALL 'includedTags'
+      const hasAllIncludes = includedTags.length === 0 || includedTags.every(t => iconTags.includes(t))
+
+      // 2. Must NOT include ANY 'excludedTags'
+      const hasNoExcludes = excludedTags.length === 0 || !excludedTags.some(t => iconTags.includes(t))
+
+      return matchesSearch && hasAllIncludes && hasNoExcludes
     })
-  }, [icons, search, selectedTags, layoutMode])
+  }, [icons, search, tagFilters, layoutMode])
 
   const toggleTag = (tag: string) => {
-    setSelectedTags(prev =>
-      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
-    )
+    setTagFilters(prev => {
+      const current = prev[tag]
+      const next = { ...prev }
+
+      if (!current) {
+        next[tag] = 'include'
+      } else if (current === 'include') {
+        next[tag] = 'exclude'
+      } else {
+        delete next[tag]
+      }
+
+      return next
+    })
+  }
+
+  // --- Drag Handlers ---
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!onBatchSelect || !showControls) return
+    if ((e.target as HTMLElement).closest('button, input, a')) return
+
+    const container = e.currentTarget.getBoundingClientRect()
+
+    setIsDragging(true)
+    setDragStart({
+      x: e.clientX - container.left,
+      y: e.clientY - container.top
+    })
+    setDragCurrent({
+      x: e.clientX - container.left,
+      y: e.clientY - container.top
+    })
+    setDragSelection([])
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !dragStart) return
+
+    const container = e.currentTarget.getBoundingClientRect()
+    const currentX = e.clientX - container.left
+    const currentY = e.clientY - container.top
+
+    setDragCurrent({ x: currentX, y: currentY })
+
+    // Intersection Logic
+    const boxLeft = Math.min(e.clientX, dragStart.x + container.left)
+    const boxTop = Math.min(e.clientY, dragStart.y + container.top)
+    const boxRight = Math.max(e.clientX, dragStart.x + container.left)
+    const boxBottom = Math.max(e.clientY, dragStart.y + container.top)
+
+    const newSelection: string[] = []
+
+    displayIcons.forEach(icon => {
+      const el = iconRefs.get(icon.name)
+      if (el) {
+        const itemRect = el.getBoundingClientRect()
+        const overlaps = !(
+          boxLeft > itemRect.right ||
+          boxRight < itemRect.left ||
+          boxTop > itemRect.bottom ||
+          boxBottom < itemRect.top
+        )
+        if (overlaps) {
+          newSelection.push(icon.name)
+        }
+      }
+    })
+
+    setDragSelection(newSelection)
+  }
+
+  const handleMouseUp = () => {
+    if (isDragging && onBatchSelect) {
+      // Merge selections
+      const combined = Array.from(new Set([...selectedIds, ...dragSelection]))
+      onBatchSelect(combined)
+    }
+    setIsDragging(false)
+    setDragStart(null)
+    setDragCurrent(null)
+    setDragSelection([])
   }
 
   const copyToClipboard = (text: string, name: string) => {
@@ -214,16 +314,11 @@ export default function IconGrid({
   }
 
   return (
-    <div className="space-y-6">
-      {/* 
-        Refactored Toolbar: Uses flex-wrap and explicitly sized containers to prevent collisions 
-      */}
+    <div className="space-y-6 select-none bg-white">
+      {/* Refactored Toolbar - No Drag Here */}
       {layoutMode === 'full' && (
         <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-sm border-b border-gray-100 py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 space-y-4">
-
-          {/* Row 1: Search & Filter */}
           <div className="flex flex-col gap-4">
-            {/* Search Input */}
             <div className="relative w-full">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <Search className="h-5 w-5 text-gray-400" />
@@ -237,27 +332,31 @@ export default function IconGrid({
               />
             </div>
 
-            {/* Tag Filters (Replaces Tabs) */}
             {availableTags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {availableTags.map(tag => {
-                  const isActive = selectedTags.includes(tag)
+                  const status = tagFilters[tag]
+                  let buttonClass = 'bg-white text-gray-500 border-gray-200 hover:bg-gray-50 hover:text-gray-700'
+
+                  if (status === 'include') {
+                    buttonClass = 'bg-indigo-100 text-indigo-700 border-indigo-200 ring-1 ring-indigo-500 ring-offset-1'
+                  } else if (status === 'exclude') {
+                    buttonClass = 'bg-red-100 text-red-700 border-red-200 ring-1 ring-red-500 ring-offset-1 line-through decoration-red-500'
+                  }
                   return (
                     <button
                       key={tag}
                       onClick={() => toggleTag(tag)}
-                      className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all ${isActive
-                          ? 'bg-indigo-100 text-indigo-700 border-indigo-200 ring-1 ring-indigo-500 ring-offset-1'
-                          : 'bg-white text-gray-500 border-gray-200 hover:bg-gray-50 hover:text-gray-700'
-                        }`}
+                      className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all ${buttonClass}`}
+                      title={status === 'include' ? 'Include' : status === 'exclude' ? 'Exclude' : 'Filter'}
                     >
                       {tag}
                     </button>
                   )
                 })}
-                {selectedTags.length > 0 && (
+                {Object.keys(tagFilters).length > 0 && (
                   <button
-                    onClick={() => setSelectedTags([])}
+                    onClick={() => setTagFilters({})}
                     className="px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-600 underline"
                   >
                     Clear
@@ -267,10 +366,7 @@ export default function IconGrid({
             )}
           </div>
 
-          {/* Row 2: Color & Size */}
           <div className="flex flex-wrap items-center justify-between gap-4 border-t border-gray-100 pt-4">
-
-            {/* Colors Wrapper */}
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center space-x-2 bg-gray-50 p-1.5 rounded-lg border border-gray-200">
                 {COLORS.map((color) => (
@@ -313,7 +409,6 @@ export default function IconGrid({
               </div>
             </div>
 
-            {/* Size Slider */}
             <div className="flex items-center space-x-4 ml-auto">
               <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Size</span>
               <input
@@ -334,30 +429,58 @@ export default function IconGrid({
         </div>
       )}
 
-      {/* Grid */}
-      <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4 pb-12">
-        {displayIcons.map((icon) => (
-          <IconItem
-            key={icon.name}
-            icon={icon}
-            size={size}
-            onDelete={onDelete}
-            showControls={showControls}
-            onCopy={copyToClipboard}
-            copied={copied}
-            selectedColor={selectedColor}
-            onClick={onIconClick ? () => onIconClick(icon) : undefined}
-            isSelected={selectedIds.includes(icon.name)}
-            onToggleSelection={onToggleSelection ? () => onToggleSelection(icon) : undefined}
+      {/* Grid Container with Draw Area - Handlers Attached Here */}
+      <div
+        className="relative min-h-[400px]"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+      >
+        {/* Visual Selection Box */}
+        {isDragging && dragStart && dragCurrent && (
+          <div
+            className="absolute bg-indigo-500/20 border border-indigo-500/50 z-50 pointer-events-none transition-none"
+            style={{
+              left: Math.min(dragStart.x, dragCurrent.x),
+              top: Math.min(dragStart.y, dragCurrent.y),
+              width: Math.abs(dragCurrent.x - dragStart.x),
+              height: Math.abs(dragCurrent.y - dragStart.y)
+            }}
           />
-        ))}
-      </div>
+        )}
 
-      {displayIcons.length === 0 && (
-        <div className="text-center py-12 bg-gray-50 rounded-xl border border-dashed border-gray-200">
-          <p className="text-gray-500">No icons found matching your criteria.</p>
+        {/* Grid */}
+        <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4 pb-12">
+          {displayIcons.map((icon) => (
+            <div
+              key={icon.name}
+              className="contents"
+            >
+              <div ref={el => { if (el) iconRefs.set(icon.name, el) }} className="h-full">
+                <IconItem
+                  icon={icon}
+                  size={size}
+                  onDelete={onDelete}
+                  showControls={showControls}
+                  onCopy={copyToClipboard}
+                  copied={copied}
+                  selectedColor={selectedColor}
+                  onClick={onIconClick ? () => onIconClick(icon) : undefined}
+                  isSelected={selectedIds.includes(icon.name) || dragSelection.includes(icon.name)}
+                  onToggleSelection={onToggleSelection ? () => onToggleSelection(icon) : undefined}
+                />
+              </div>
+            </div>
+          ))}
         </div>
-      )}
+
+        {displayIcons.length === 0 && (
+          <div className="text-center py-12 bg-gray-50 rounded-xl border border-dashed border-gray-200">
+            <p className="text-gray-500">No icons found matching your criteria.</p>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
