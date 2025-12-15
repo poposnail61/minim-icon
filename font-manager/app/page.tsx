@@ -206,6 +206,34 @@ export default function Home() {
                     <p className="text-gray-400">Upload your font file to automatically split and subset it for web optimization.</p>
                 </div>
 
+                {/* Usage Guide */}
+                <div className="bg-gray-900/40 border border-gray-800 rounded-2xl p-6 space-y-4">
+                    <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                        <span className="w-1.5 h-6 bg-blue-500 rounded-full"></span>
+                        How to Use
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                        <div className="space-y-2">
+                            <p className="text-gray-400 font-medium">1. Add to HTML (Recommended)</p>
+                            <div className="bg-black/50 p-3 rounded-lg border border-white/10 font-mono text-gray-300 break-all select-all">
+                                &lt;link rel="stylesheet" href="[CSS_URL]" /&gt;
+                            </div>
+                        </div>
+                        <div className="space-y-2">
+                            <p className="text-gray-400 font-medium">2. Import in CSS</p>
+                            <div className="bg-black/50 p-3 rounded-lg border border-white/10 font-mono text-gray-300 break-all select-all">
+                                @import url("[CSS_URL]");
+                            </div>
+                        </div>
+                        <div className="col-span-1 md:col-span-2 space-y-2">
+                            <p className="text-gray-400 font-medium">3. Apply Font Family</p>
+                            <div className="bg-black/50 p-3 rounded-lg border border-white/10 font-mono text-gray-300 select-all">
+                                font-family: "[FontFamilyName]";
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Upload Section */}
                 <div
                     className={`

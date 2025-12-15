@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import { exec } from "child_process";
+import util from "util";
+
+const execPromise = util.promisify(exec);
 
 export async function POST(req: NextRequest) {
     try {
@@ -30,7 +34,26 @@ export async function POST(req: NextRequest) {
         // Copy all files recursively
         await fs.cp(sourceDir, targetDir, { recursive: true });
 
-        // No need to rewrite CSS URLs because they are relative and valid in the new location too.
+        // --- Auto Git Push Logic ---
+        try {
+            const fontName = id; // Use the ID as the font name for the commit message
+            console.log(`Starting auto-push for release: ${fontName}`);
+
+            // 1. Add changes
+            await execPromise('git add .');
+
+            // 2. Commit
+            await execPromise(`git commit -m "release: update font ${fontName}"`);
+
+            // 3. Push
+            await execPromise('git push');
+
+            console.log("Auto-push completed successfully.");
+        } catch (gitError) {
+            console.error("Auto-push failed:", gitError);
+            // We don't fail the request if git push fails, but we verify it in logs.
+            // Or we could return a warning. for now just log it.
+        }
 
         return NextResponse.json({ success: true });
 
