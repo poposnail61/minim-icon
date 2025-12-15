@@ -45,3 +45,6 @@ next-env.d.ts
 *.resolved.*
 *.metadata.json
 *.webp
+
+# Ignore font-manager nested repo
+font-manager/
