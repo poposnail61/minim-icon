@@ -28,7 +28,7 @@ try {
     .filter(file => file.endsWith('.svg'))
     .map(file => {
       const name = file.replace('.svg', '');
-      const url = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${BRANCH}/public/icons/${file}`;
+      const url = `https://cdn.jsdelivr.net/gh/${GITHUB_OWNER}/${GITHUB_REPO}@${BRANCH}/public/icons/${file}`;
       
       // Calculate aspect ratio
       const content = fs.readFileSync(path.join(ICONS_DIR, file), 'utf8');
