@@ -653,5 +653,11 @@
   ],
   "checkbox-mixed": [
     "outline"
+  ],
+  "checkbox-mixed-1": [
+    "solid"
+  ],
+  "check-circle-solid": [
+    "solid"
   ]
 }
