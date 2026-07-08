@@ -45,9 +45,15 @@ async function githubRequest(path: string, options: RequestInit = {}) {
   const res = await fetch(url, { ...options, headers })
   if (!res.ok) {
     const error = await res.json()
-    throw new Error(error.message || 'GitHub API Error')
+    const requestError = new Error(error.message || 'GitHub API Error')
+    ;(requestError as Error & { status?: number }).status = res.status
+    throw requestError
   }
   return res.json()
+}
+
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 function getSvgRatio(content: string) {
@@ -85,6 +91,26 @@ async function purgeJsdelivrCache(paths: string[]) {
 }
 
 async function regenerateIconsCss(extraPurgePaths: string[] = []) {
+  let lastError: unknown
+
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      if (attempt > 0) {
+        await sleep(1000 * attempt)
+      }
+
+      await writeIconsCss(extraPurgePaths)
+      return
+    } catch (error) {
+      lastError = error
+      console.warn(`icons.css regeneration attempt ${attempt + 1} failed:`, error)
+    }
+  }
+
+  throw lastError
+}
+
+async function writeIconsCss(extraPurgePaths: string[] = []) {
   const iconsData = await githubRequest('public/icons')
   const iconFiles = Array.isArray(iconsData)
     ? iconsData
@@ -93,7 +119,17 @@ async function regenerateIconsCss(extraPurgePaths: string[] = []) {
     : []
 
   const iconRules = await Promise.all(iconFiles.map(async (file: any) => {
-    const iconData = await githubRequest(`public/icons/${file.name}`)
+    let iconData
+    try {
+      iconData = await githubRequest(`public/icons/${file.name}`)
+    } catch (error) {
+      if ((error as Error & { status?: number }).status === 404) {
+        return null
+      }
+
+      throw error
+    }
+
     const svg = Buffer.from(iconData.content, 'base64').toString('utf-8')
     const name = file.name.replace(/\.svg$/, '')
     const url = `https://cdn.jsdelivr.net/gh/${GITHUB_OWNER}/${GITHUB_REPO}@${BRANCH}/public/icons/${file.name}`
@@ -122,7 +158,7 @@ async function regenerateIconsCss(extraPurgePaths: string[] = []) {
     method: 'PUT',
     body: JSON.stringify({
       message: 'Update icons.css via Minim Icon',
-      content: Buffer.from(baseIconCss + iconRules.join('\n')).toString('base64'),
+      content: Buffer.from(baseIconCss + iconRules.filter(Boolean).join('\n')).toString('base64'),
       sha,
       branch: BRANCH
     })
@@ -225,9 +261,17 @@ export async function POST(request: Request) {
       })
     })
 
-    await regenerateIconsCss([path])
+    let cssSynced = true
+    let cssSyncError: string | undefined
+    try {
+      await regenerateIconsCss([path])
+    } catch (error) {
+      cssSynced = false
+      cssSyncError = (error as Error).message
+      console.warn('Icon uploaded, but icons.css sync failed:', error)
+    }
 
-    return NextResponse.json({ success: true, filename })
+    return NextResponse.json({ success: true, filename, cssSynced, cssSyncError })
   } catch (error) {
     console.error('GitHub Upload Error:', error)
     return NextResponse.json({ error: 'Upload failed', details: (error as Error).message }, { status: 500 })
@@ -271,7 +315,15 @@ export async function DELETE(request: Request) {
       })
     })
 
-    await regenerateIconsCss([path])
+    let cssSynced = true
+    let cssSyncError: string | undefined
+    try {
+      await regenerateIconsCss([path])
+    } catch (error) {
+      cssSynced = false
+      cssSyncError = (error as Error).message
+      console.warn('Icon deleted, but icons.css sync failed:', error)
+    }
 
     try {
       const tagsPath = 'data/tags.json'
@@ -299,7 +351,7 @@ export async function DELETE(request: Request) {
       }
     }
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true, cssSynced, cssSyncError })
   } catch (error) {
     console.error('GitHub Delete Error:', error)
     return NextResponse.json({ error: 'Failed to delete icon' }, { status: 500 })

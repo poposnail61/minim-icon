@@ -68,6 +68,7 @@ export default function AdminPage() {
     try {
       let successCount = 0
       let failCount = 0
+      let cssSyncFailed = false
 
       for (const file of files) {
         const formData = new FormData()
@@ -80,6 +81,10 @@ export default function AdminPage() {
 
         if (res.ok) {
           successCount++
+          const data = await res.json().catch(() => null)
+          if (data?.cssSynced === false) {
+            cssSyncFailed = true
+          }
         } else {
           failCount++
           console.error(`Failed to upload ${file.name}`)
@@ -88,7 +93,7 @@ export default function AdminPage() {
 
       if (successCount > 0) {
         await fetchIcons()
-        alert(`Uploaded ${successCount} files successfully.${failCount > 0 ? ` Failed: ${failCount}` : ''}`)
+        alert(`Uploaded ${successCount} files successfully.${failCount > 0 ? ` Failed: ${failCount}` : ''}${cssSyncFailed ? ' Icon CSS sync failed. Use Sync CSS.' : ''}`)
       } else if (failCount > 0) {
         alert('Failed to upload files.')
       }
@@ -128,6 +133,7 @@ export default function AdminPage() {
 
     let successCount = 0
     let failCount = 0
+    let cssSyncFailed = false
 
     for (const name of selectedIcons) {
       try {
@@ -135,14 +141,21 @@ export default function AdminPage() {
         const res = await fetch(`/api/icons?${params.toString()}`, {
           method: 'DELETE',
         })
-        if (res.ok) successCount++
-        else failCount++
+        if (res.ok) {
+          successCount++
+          const data = await res.json().catch(() => null)
+          if (data?.cssSynced === false) {
+            cssSyncFailed = true
+          }
+        } else {
+          failCount++
+        }
       } catch (e) {
         failCount++
       }
     }
 
-    alert(`Deleted ${successCount} icons.${failCount > 0 ? ` Failed: ${failCount}` : ''}`)
+    alert(`Deleted ${successCount} icons.${failCount > 0 ? ` Failed: ${failCount}` : ''}${cssSyncFailed ? ' Icon CSS sync failed. Use Sync CSS.' : ''}`)
 
     // Refresh
     setSelectedIcons([])
@@ -157,10 +170,15 @@ export default function AdminPage() {
         method: 'DELETE',
       })
       if (res.ok) {
+        const data = await res.json().catch(() => null)
         setActiveIcon(null) // Close modal
         await fetchIcons()
+        if (data?.cssSynced === false) {
+          alert('Icon deleted. Icon CSS sync failed, so use Sync CSS.')
+        }
       } else {
-        alert('Failed to delete icon')
+        const data = await res.json().catch(() => null)
+        alert(data?.details || data?.error || 'Failed to delete icon')
       }
     } catch (error) {
       console.error('Delete error:', error)
