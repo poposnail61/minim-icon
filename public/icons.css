@@ -492,10 +492,16 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-checked-solid.svg);
 }
 
-.icon-checkbox-mixed-1 {
+.icon-checkbox-mixed-outline {
   --ratio: 1;
-  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-1.svg);
-  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-1.svg);
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-outline.svg);
+}
+
+.icon-checkbox-mixed-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-solid.svg);
 }
 
 .icon-checkbox-mixed {
@@ -654,6 +660,30 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/edit-solid.svg);
 }
 
+.icon-fast-forward-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/fast-forward-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/fast-forward-outline.svg);
+}
+
+.icon-fast-forward-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/fast-forward-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/fast-forward-solid.svg);
+}
+
+.icon-fast-rewind-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/fast-rewind-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/fast-rewind-outline.svg);
+}
+
+.icon-fast-rewind-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/fast-rewind-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/fast-rewind-solid.svg);
+}
+
 .icon-file-note-outline {
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/file-note-outline.svg);
@@ -786,6 +816,12 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/format-underlined-solid.svg);
 }
 
+.icon-headphone-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/headphone-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/headphone-outline.svg);
+}
+
 .icon-home-outline {
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/home-outline.svg);
@@ -840,6 +876,12 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/logo-kakao.svg);
 }
 
+.icon-logo-naver {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/logo-naver.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/logo-naver.svg);
+}
+
 .icon-logo-tiktok-color {
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/logo-tiktok-color.svg);
@@ -862,6 +904,18 @@
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/logo-youtube.svg);
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/logo-youtube.svg);
+}
+
+.icon-mail-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/mail-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/mail-outline.svg);
+}
+
+.icon-mail-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/mail-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/mail-solid.svg);
 }
 
 .icon-map-outline {
@@ -924,6 +978,12 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/multy-person-solid.svg);
 }
 
+.icon-music-note2-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/music-note2-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/music-note2-outline.svg);
+}
+
 .icon-notification-outline {
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/notification-outline.svg);
@@ -948,6 +1008,18 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/open-window-solid.svg);
 }
 
+.icon-pause-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/pause-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/pause-outline.svg);
+}
+
+.icon-pause-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/pause-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/pause-solid.svg);
+}
+
 .icon-person-outline {
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/person-outline.svg);
@@ -958,6 +1030,18 @@
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/person-solid.svg);
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/person-solid.svg);
+}
+
+.icon-play-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/play-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/play-outline.svg);
+}
+
+.icon-play-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/play-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/play-solid.svg);
 }
 
 .icon-plus-outline {
@@ -1066,6 +1150,36 @@
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/shopping-bag-solid.svg);
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/shopping-bag-solid.svg);
+}
+
+.icon-skip-next-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/skip-next-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/skip-next-outline.svg);
+}
+
+.icon-skip-next-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/skip-next-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/skip-next-solid.svg);
+}
+
+.icon-skip-prev-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/skip-prev-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/skip-prev-outline.svg);
+}
+
+.icon-stop-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/stop-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/stop-outline.svg);
+}
+
+.icon-stop-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/stop-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/stop-solid.svg);
 }
 
 .icon-store-outline {
