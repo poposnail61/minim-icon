@@ -72,6 +72,61 @@ function getSvgRatio(content: string) {
   return 1
 }
 
+function getAutoTagsForFilename(filename: string) {
+  if (filename.endsWith('-solid.svg')) {
+    return ['solid']
+  }
+
+  if (filename.endsWith('-outline.svg')) {
+    return ['outline']
+  }
+
+  return []
+}
+
+async function addAutoTagsForIcon(filename: string) {
+  const autoTags = getAutoTagsForFilename(filename)
+  if (autoTags.length === 0) return []
+
+  const path = 'data/tags.json'
+  const iconName = filename.replace(/\.svg$/, '')
+  let sha: string | undefined
+  let currentTags: Record<string, string[]> = {}
+
+  try {
+    const existing = await githubRequest(path)
+    sha = existing.sha
+    const content = Buffer.from(existing.content, 'base64').toString('utf-8')
+    currentTags = JSON.parse(content)
+  } catch (error: any) {
+    if (error.message !== 'Not Found') {
+      throw error
+    }
+  }
+
+  const nextIconTags = Array.from(new Set([...(currentTags[iconName] || []), ...autoTags]))
+  if (nextIconTags.length === (currentTags[iconName] || []).length) {
+    return []
+  }
+
+  const nextTags = {
+    ...currentTags,
+    [iconName]: nextIconTags
+  }
+
+  await githubRequest(path, {
+    method: 'PUT',
+    body: JSON.stringify({
+      message: `Update tags via Minim Icon`,
+      content: Buffer.from(JSON.stringify(nextTags, null, 2)).toString('base64'),
+      sha,
+      branch: BRANCH
+    })
+  })
+
+  return autoTags
+}
+
 async function purgeJsdelivrCache(paths: string[]) {
   const uniquePaths = Array.from(new Set(paths))
 
@@ -261,6 +316,8 @@ export async function POST(request: Request) {
       })
     })
 
+    const autoTags = await addAutoTagsForIcon(filename)
+
     let cssSynced = true
     let cssSyncError: string | undefined
     try {
@@ -271,7 +328,7 @@ export async function POST(request: Request) {
       console.warn('Icon uploaded, but icons.css sync failed:', error)
     }
 
-    return NextResponse.json({ success: true, filename, cssSynced, cssSyncError })
+    return NextResponse.json({ success: true, filename, autoTags, cssSynced, cssSyncError })
   } catch (error) {
     console.error('GitHub Upload Error:', error)
     return NextResponse.json({ error: 'Upload failed', details: (error as Error).message }, { status: 500 })

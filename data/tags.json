@@ -684,5 +684,62 @@
   ],
   "store-solid": [
     "solid"
+  ],
+  "checkbox-mixed-outline": [
+    "outline"
+  ],
+  "checkbox-mixed-solid": [
+    "solid"
+  ],
+  "fast-forward-outline": [
+    "outline"
+  ],
+  "fast-forward-solid": [
+    "solid"
+  ],
+  "fast-rewind-outline": [
+    "outline"
+  ],
+  "fast-rewind-solid": [
+    "solid"
+  ],
+  "headphone-outline": [
+    "outline"
+  ],
+  "mail-outline": [
+    "outline"
+  ],
+  "mail-solid": [
+    "solid"
+  ],
+  "music-note2-outline": [
+    "outline"
+  ],
+  "pause-outline": [
+    "outline"
+  ],
+  "pause-solid": [
+    "solid"
+  ],
+  "play-outline": [
+    "outline"
+  ],
+  "play-solid": [
+    "solid"
+  ],
+  "skip-next-outline": [
+    "outline"
+  ],
+  "skip-next-solid": [
+    "solid"
+  ],
+  "skip-prev-outline": [
+    "outline"
+  ],
+  "stop-outline": [
+    "outline"
+  ],
+  "stop-solid": [
+    "solid"
   ]
 }

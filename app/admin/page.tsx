@@ -69,6 +69,7 @@ export default function AdminPage() {
       let successCount = 0
       let failCount = 0
       let cssSyncFailed = false
+      const appliedAutoTags = new Set<string>()
 
       for (const file of files) {
         const formData = new FormData()
@@ -82,6 +83,9 @@ export default function AdminPage() {
         if (res.ok) {
           successCount++
           const data = await res.json().catch(() => null)
+          if (Array.isArray(data?.autoTags)) {
+            data.autoTags.forEach((tag: string) => appliedAutoTags.add(tag))
+          }
           if (data?.cssSynced === false) {
             cssSyncFailed = true
           }
@@ -93,7 +97,7 @@ export default function AdminPage() {
 
       if (successCount > 0) {
         await fetchIcons()
-        alert(`Uploaded ${successCount} files successfully.${failCount > 0 ? ` Failed: ${failCount}` : ''}${cssSyncFailed ? ' Icon CSS sync failed. Use Sync CSS.' : ''}`)
+        alert(`Uploaded ${successCount} files successfully.${appliedAutoTags.size > 0 ? ` Auto tags: ${Array.from(appliedAutoTags).join(', ')}.` : ''}${failCount > 0 ? ` Failed: ${failCount}` : ''}${cssSyncFailed ? ' Icon CSS sync failed. Use Sync CSS.' : ''}`)
       } else if (failCount > 0) {
         alert('Failed to upload files.')
       }
