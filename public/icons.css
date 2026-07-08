@@ -504,24 +504,6 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-solid.svg);
 }
 
-.icon-checkbox-mixed-outline {
-  --ratio: 1;
-  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-outline.svg);
-  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-outline.svg);
-}
-
-.icon-checkbox-mixed-solid {
-  --ratio: 1;
-  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-solid.svg);
-  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed-solid.svg);
-}
-
-.icon-checkbox-mixed {
-  --ratio: 1;
-  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed.svg);
-  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-mixed.svg);
-}
-
 .icon-checkbox-outline {
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/checkbox-outline.svg);
