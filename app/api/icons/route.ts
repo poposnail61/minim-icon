@@ -7,6 +7,29 @@ const GITHUB_OWNER = process.env.GITHUB_OWNER
 const GITHUB_REPO = process.env.GITHUB_REPO
 const BRANCH = 'main'
 
+const baseIconCss = `/* Minim Icon System */
+.icon {
+  display: inline-block;
+  width: calc(1em * var(--ratio, 1));
+  height: 1em;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+`
+
+function isAdminRequest(request: Request) {
+  const cookie = request.headers.get('cookie') || ''
+  return cookie
+    .split(';')
+    .map(part => part.trim())
+    .includes('admin_session=true')
+}
+
 // Helper to interact with GitHub API
 async function githubRequest(path: string, options: RequestInit = {}) {
   if (!GITHUB_TOKEN) throw new Error('GITHUB_TOKEN is not set')
@@ -25,6 +48,87 @@ async function githubRequest(path: string, options: RequestInit = {}) {
     throw new Error(error.message || 'GitHub API Error')
   }
   return res.json()
+}
+
+function getSvgRatio(content: string) {
+  const widthMatch = content.match(/width=["']?([\d.]+)["']?/)
+  const heightMatch = content.match(/height=["']?([\d.]+)["']?/)
+
+  if (widthMatch && heightMatch) {
+    return parseFloat(widthMatch[1]) / parseFloat(heightMatch[1])
+  }
+
+  const viewBoxMatch = content.match(/viewBox=["']?([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)["']?/)
+  if (viewBoxMatch) {
+    return parseFloat(viewBoxMatch[3]) / parseFloat(viewBoxMatch[4])
+  }
+
+  return 1
+}
+
+async function purgeJsdelivrCache(paths: string[]) {
+  const uniquePaths = Array.from(new Set(paths))
+
+  await Promise.all(uniquePaths.map(async (path) => {
+    const encodedPath = path.split('/').map(encodeURIComponent).join('/')
+    const url = `https://purge.jsdelivr.net/gh/${GITHUB_OWNER}/${GITHUB_REPO}@${BRANCH}/${encodedPath}`
+
+    try {
+      const res = await fetch(url)
+      if (!res.ok) {
+        console.warn(`Failed to purge jsDelivr cache for ${path}: ${res.status}`)
+      }
+    } catch (error) {
+      console.warn(`Failed to purge jsDelivr cache for ${path}:`, error)
+    }
+  }))
+}
+
+async function regenerateIconsCss(extraPurgePaths: string[] = []) {
+  const iconsData = await githubRequest('public/icons')
+  const iconFiles = Array.isArray(iconsData)
+    ? iconsData
+      .filter((file: any) => file.name.endsWith('.svg'))
+      .sort((a: any, b: any) => a.name.localeCompare(b.name))
+    : []
+
+  const iconRules = await Promise.all(iconFiles.map(async (file: any) => {
+    const iconData = await githubRequest(`public/icons/${file.name}`)
+    const svg = Buffer.from(iconData.content, 'base64').toString('utf-8')
+    const name = file.name.replace(/\.svg$/, '')
+    const url = `https://cdn.jsdelivr.net/gh/${GITHUB_OWNER}/${GITHUB_REPO}@${BRANCH}/public/icons/${file.name}`
+    const ratio = Math.round(getSvgRatio(svg) * 10000) / 10000
+
+    return `
+.icon-${name} {
+  --ratio: ${ratio};
+  mask-image: url(${url});
+  -webkit-mask-image: url(${url});
+}`
+  }))
+
+  const path = 'public/icons.css'
+  let sha: string | undefined
+  try {
+    const existing = await githubRequest(path)
+    sha = existing.sha
+  } catch (error: any) {
+    if (error.message !== 'Not Found') {
+      throw error
+    }
+  }
+
+  await githubRequest(path, {
+    method: 'PUT',
+    body: JSON.stringify({
+      message: 'Update icons.css via Minim Icon',
+      content: Buffer.from(baseIconCss + iconRules.join('\n')).toString('base64'),
+      sha,
+      branch: BRANCH
+    })
+  })
+
+  await purgeJsdelivrCache(['public/icons.css', ...extraPurgePaths])
 }
 
 export async function GET() {
@@ -81,6 +185,10 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    if (!isAdminRequest(request)) {
+      return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+    }
+
     if (!GITHUB_TOKEN) {
       return NextResponse.json({ error: 'GITHUB_TOKEN not configured' }, { status: 500 })
     }
@@ -117,6 +225,8 @@ export async function POST(request: Request) {
       })
     })
 
+    await regenerateIconsCss([path])
+
     return NextResponse.json({ success: true, filename })
   } catch (error) {
     console.error('GitHub Upload Error:', error)
@@ -124,9 +234,105 @@ export async function POST(request: Request) {
   }
 }
 
+// Delete Icon
+export async function DELETE(request: Request) {
+  try {
+    if (!isAdminRequest(request)) {
+      return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+    }
+
+    if (!GITHUB_TOKEN) {
+      return NextResponse.json({ error: 'GITHUB_TOKEN not configured' }, { status: 500 })
+    }
+
+    const { searchParams } = new URL(request.url)
+    const name = searchParams.get('name')
+
+    if (!name || !name.endsWith('.svg')) {
+      return NextResponse.json({ error: 'Invalid icon name' }, { status: 400 })
+    }
+
+    const path = `public/icons/${name}`
+
+    let sha: string
+    try {
+      const fileData = await githubRequest(path)
+      sha = fileData.sha
+    } catch (e) {
+      return NextResponse.json({ error: 'File not found on GitHub' }, { status: 404 })
+    }
+
+    await githubRequest(path, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        message: `Delete ${name} via Minim Icon`,
+        sha,
+        branch: BRANCH
+      })
+    })
+
+    await regenerateIconsCss([path])
+
+    try {
+      const tagsPath = 'data/tags.json'
+      const tagsRes = await githubRequest(tagsPath)
+      const content = Buffer.from(tagsRes.content, 'base64').toString('utf-8')
+      const tagsMap = JSON.parse(content)
+      const iconName = name.replace(/\.svg$/, '')
+
+      if (Object.prototype.hasOwnProperty.call(tagsMap, iconName)) {
+        delete tagsMap[iconName]
+
+        await githubRequest(tagsPath, {
+          method: 'PUT',
+          body: JSON.stringify({
+            message: `Update tags via Minim Icon`,
+            content: Buffer.from(JSON.stringify(tagsMap, null, 2)).toString('base64'),
+            sha: tagsRes.sha,
+            branch: BRANCH
+          })
+        })
+      }
+    } catch (error: any) {
+      if (error.message !== 'Not Found') {
+        console.warn('Failed to remove deleted icon from tags.json:', error)
+      }
+    }
+
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('GitHub Delete Error:', error)
+    return NextResponse.json({ error: 'Failed to delete icon' }, { status: 500 })
+  }
+}
+
+// Force Regenerate icons.css
+export async function PATCH(request: Request) {
+  try {
+    if (!isAdminRequest(request)) {
+      return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+    }
+
+    if (!GITHUB_TOKEN) {
+      return NextResponse.json({ error: 'GITHUB_TOKEN not configured' }, { status: 500 })
+    }
+
+    await regenerateIconsCss()
+
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('CSS Sync Error:', error)
+    return NextResponse.json({ error: 'Failed to sync icons.css', details: (error as Error).message }, { status: 500 })
+  }
+}
+
 // Update Tags
 export async function PUT(request: Request) {
   try {
+    if (!isAdminRequest(request)) {
+      return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+    }
+
     if (!GITHUB_TOKEN) {
       return NextResponse.json({ error: 'GITHUB_TOKEN not configured' }, { status: 500 })
     }

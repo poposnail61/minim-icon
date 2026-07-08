@@ -20,9 +20,9 @@ export function proxy(request: NextRequest) {
     }
   }
 
-  // 2. Protect API routes (POST/DELETE/PUT) under /api/icons
+  // 2. Protect API routes (POST/DELETE/PUT/PATCH) under /api/icons
   if (pathname.startsWith('/api/icons')) {
-    if (['POST', 'DELETE', 'PUT'].includes(request.method)) {
+    if (['POST', 'DELETE', 'PUT', 'PATCH'].includes(request.method)) {
       if (!request.cookies.has('admin_session')) {
         return new NextResponse(
           JSON.stringify({ success: false, message: 'Unauthorized' }),

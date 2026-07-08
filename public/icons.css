@@ -372,6 +372,18 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/arrow-up-solid.svg);
 }
 
+.icon-building-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/building-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/building-outline.svg);
+}
+
+.icon-building-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/building-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/building-solid.svg);
+}
+
 .icon-calendar-outline {
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/calendar-outline.svg);
@@ -394,6 +406,18 @@
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/camera-solid.svg);
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/camera-solid.svg);
+}
+
+.icon-category-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/category-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/category-outline.svg);
+}
+
+.icon-category-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/category-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/category-solid.svg);
 }
 
 .icon-chat-more-outline {
@@ -430,6 +454,18 @@
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/chat-solid.svg);
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/chat-solid.svg);
+}
+
+.icon-check-circle-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/check-circle-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/check-circle-outline.svg);
+}
+
+.icon-check-circle-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/check-circle-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/check-circle-solid.svg);
 }
 
 .icon-check-outline {
@@ -580,6 +616,18 @@
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/copy-solid.svg);
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/copy-solid.svg);
+}
+
+.icon-currency-won-circle-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/currency-won-circle-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/currency-won-circle-outline.svg);
+}
+
+.icon-currency-won-circle-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/currency-won-circle-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/currency-won-circle-solid.svg);
 }
 
 .icon-delete-outline {
@@ -828,6 +876,18 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/map-solid.svg);
 }
 
+.icon-menu-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/menu-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/menu-outline.svg);
+}
+
+.icon-menu-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/menu-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/menu-solid.svg);
+}
+
 .icon-minus-outline {
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/minus-outline.svg);
@@ -936,12 +996,6 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/radio-solid.svg);
 }
 
-.icon-ratio-test {
-  --ratio: 2;
-  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/ratio-test.svg);
-  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/ratio-test.svg);
-}
-
 .icon-redo-outline {
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/redo-outline.svg);
@@ -1012,6 +1066,18 @@
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/shopping-bag-solid.svg);
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/shopping-bag-solid.svg);
+}
+
+.icon-store-outline {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/store-outline.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/store-outline.svg);
+}
+
+.icon-store-solid {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/store-solid.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/store-solid.svg);
 }
 
 .icon-swap-horiz-outline {

@@ -5,6 +5,14 @@ const GITHUB_OWNER = process.env.GITHUB_OWNER
 const GITHUB_REPO = process.env.GITHUB_REPO
 const BRANCH = 'main'
 
+function isAdminRequest(request: Request) {
+  const cookie = request.headers.get('cookie') || ''
+  return cookie
+    .split(';')
+    .map(part => part.trim())
+    .includes('admin_session=true')
+}
+
 async function githubRequest(path: string, options: RequestInit = {}) {
   if (!GITHUB_TOKEN) throw new Error('GITHUB_TOKEN is not set')
   
@@ -29,6 +37,10 @@ export async function DELETE(
   { params }: { params: Promise<{ filename: string }> }
 ) {
   try {
+    if (!isAdminRequest(request)) {
+      return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+    }
+
     if (!GITHUB_TOKEN) {
       return NextResponse.json({ error: 'GITHUB_TOKEN not configured' }, { status: 500 })
     }

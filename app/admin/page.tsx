@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import UploadZone from '../../components/UploadZone'
 import IconGrid from '../../components/IconGrid'
 import AdminIconModal from '../../components/AdminIconModal'
-import { Tag, Plus, X, Trash2 } from 'lucide-react'
+import { Tag, Plus, X, Trash2, RefreshCcw } from 'lucide-react'
 
 // Define Icon interface locally if not available globally
 interface Icon {
@@ -19,6 +19,7 @@ export default function AdminPage() {
   const [icons, setIcons] = useState<Icon[]>([])
   const [loading, setLoading] = useState(true)
   const [isUploading, setIsUploading] = useState(false)
+  const [isSyncingCss, setIsSyncingCss] = useState(false)
 
   // Tagging State
   const [selectedIcons, setSelectedIcons] = useState<string[]>([])
@@ -99,6 +100,28 @@ export default function AdminPage() {
     }
   }
 
+  const handleSyncCss = async () => {
+    setIsSyncingCss(true)
+
+    try {
+      const res = await fetch('/api/icons', {
+        method: 'PATCH',
+      })
+
+      if (res.ok) {
+        alert('Icon CSS synced successfully.')
+      } else {
+        const data = await res.json().catch(() => null)
+        alert(data?.error || 'Failed to sync icon CSS')
+      }
+    } catch (error) {
+      console.error('CSS sync error:', error)
+      alert('An error occurred while syncing icon CSS.')
+    } finally {
+      setIsSyncingCss(false)
+    }
+  }
+
   // Batch Delete
   const handleBatchDelete = async () => {
     if (!confirm(`Are you sure you want to delete ${selectedIcons.length} icons? This cannot be undone.`)) return
@@ -108,7 +131,8 @@ export default function AdminPage() {
 
     for (const name of selectedIcons) {
       try {
-        const res = await fetch(`/api/icons?name=${name}.svg`, {
+        const params = new URLSearchParams({ name: `${name}.svg` })
+        const res = await fetch(`/api/icons?${params.toString()}`, {
           method: 'DELETE',
         })
         if (res.ok) successCount++
@@ -128,7 +152,8 @@ export default function AdminPage() {
   // Single Delete (Modal)
   const handleSingleDelete = async (name: string) => {
     try {
-      const res = await fetch(`/api/icons?name=${name}.svg`, {
+      const params = new URLSearchParams({ name: `${name}.svg` })
+      const res = await fetch(`/api/icons?${params.toString()}`, {
         method: 'DELETE',
       })
       if (res.ok) {
@@ -275,7 +300,19 @@ export default function AdminPage() {
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0 space-y-8">
           <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-lg font-medium text-gray-900 mb-4">Upload Icons</h2>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+              <h2 className="text-lg font-medium text-gray-900">Upload Icons</h2>
+              <button
+                type="button"
+                onClick={handleSyncCss}
+                disabled={isSyncingCss || isUploading}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                title="Regenerate public/icons.css from the current icon list"
+              >
+                <RefreshCcw className={`w-4 h-4 ${isSyncingCss ? 'animate-spin' : ''}`} />
+                {isSyncingCss ? 'Syncing CSS...' : 'Sync CSS'}
+              </button>
+            </div>
             <UploadZone onUpload={handleUpload} isUploading={isUploading} />
           </div>
 
