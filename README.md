@@ -22,16 +22,16 @@ The CSS API remains fully supported. It is a good fit for static HTML and for ap
 
 ## React quick start
 
-The React package is in this monorepo as `@minim-icon/react`. It is intentionally private until its npm scope ownership and license are confirmed; it is not published by this repository.
+The React package is published on npm as [`minim-icon-react`](https://www.npmjs.com/package/minim-icon-react) under the MIT license.
 
 ```bash
-npm install @minim-icon/react react
+npm install minim-icon-react react
 ```
 
 Use named imports for the best tree-shaking result:
 
 ```tsx
-import { ArrowRightOutline, LogoInstagramColor } from "@minim-icon/react";
+import { ArrowRightOutline, LogoInstagramColor } from "minim-icon-react";
 
 export function ContinueButton() {
   return (
@@ -58,7 +58,7 @@ The collection has 214 source icons. Monochrome `#18181B`/black artwork is gener
 `MinimIcon` renders an icon from its original kebab-case filename. `icons` and `iconNames` provide metadata and the valid names.
 
 ```tsx
-import { MinimIcon, dynamicIconImports, type IconName } from "@minim-icon/react";
+import { MinimIcon, dynamicIconImports, type IconName } from "minim-icon-react";
 
 const name: IconName = "arrow-right-outline";
 
@@ -72,7 +72,7 @@ const Icon = module.ArrowRightOutline;
 Direct component imports are also exported for bundlers that prefer a narrow entry point:
 
 ```tsx
-import { ArrowRightOutline } from "@minim-icon/react/icons/arrow-right-outline";
+import { ArrowRightOutline } from "minim-icon-react/icons/arrow-right-outline";
 ```
 
 The source collection contains three historic filename typos. Their original exports (`Tiket*`, `MultyPerson*`, `UnfoldColse*`) remain available and are marked deprecated; prefer the aliases `Ticket*`, `MultiPerson*`, and `UnfoldClose*`.
