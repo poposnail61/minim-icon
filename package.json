@@ -2,11 +2,17 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "node generate_css.js && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "react:generate": "npm run generate --workspace=@minim-icon/react",
+    "react:check": "npm run check:generated --workspace=@minim-icon/react && npm run typecheck --workspace=@minim-icon/react && npm run test --workspace=@minim-icon/react",
+    "react:build": "npm run build --workspace=@minim-icon/react"
   },
   "dependencies": {
     "clsx": "^2.1.1",
