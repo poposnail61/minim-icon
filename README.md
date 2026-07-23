@@ -89,6 +89,10 @@ npm run react:build     # generate ESM, CommonJS, and declaration outputs
 
 The existing `npm run build` continues to build only the Next.js application and refresh its CSS. Run the explicit `react:*` commands when working on the library.
 
+### Release
+
+The npm release workflow is manual-only (`Publish npm package` in GitHub Actions). Add `NPM_TOKEN` as a repository secret using an npm granular access token that can bypass 2FA for the first public publish.
+
 ## ✨ Features
 
 -   **Zero Config**: No build steps or npm packages required.
