@@ -642,6 +642,18 @@
   -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/delete-solid.svg);
 }
 
+.icon-drag-vert-tight {
+  --ratio: 0.75;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/drag-vert-tight.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/drag-vert-tight.svg);
+}
+
+.icon-drag-vert {
+  --ratio: 1;
+  mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/drag-vert.svg);
+  -webkit-mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/drag-vert.svg);
+}
+
 .icon-edit-outline {
   --ratio: 1;
   mask-image: url(https://cdn.jsdelivr.net/gh/poposnail61/minim-icon@main/public/icons/edit-outline.svg);
